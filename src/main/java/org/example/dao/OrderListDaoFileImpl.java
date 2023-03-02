@@ -18,8 +18,9 @@ public class OrderListDaoFileImpl implements OrderListDao {
 
     @Override
     // NEED TO UPDATE THIS SUCH THAT WE SEARCH FOR THE ORDER DATE TO FIND THE ORDER IN THE HASHMAP RELATED TO THIS DATE
-    public ArrayList<Order> getAllOrders() {
-        return new ArrayList<>(orderList.values());
+    public ArrayList<Order> getAllOrders(String orderDate) {
+        HashMap orderForDate = allOrders.get(orderDate);
+        return new ArrayList<>(orderForDate.values());
     }
 
     @Override
@@ -28,9 +29,14 @@ public class OrderListDaoFileImpl implements OrderListDao {
     }
 
     @Override
-    public Order addOrder(Integer orderNumber, Order order) {
-        Order newOrder = orderList.put(orderNumber, order);
-        return newOrder;
+    public void addOrder(Order order) {
+        if (allOrders.containsKey(order.getOrderDate())) {
+            HashMap orderList = allOrders.get(order.getOrderDate());
+        } else {
+            HashMap orderList = new HashMap();
+        }
+        orderList.put(order.getOrderNumber(), order);
+        allOrders.put(order.getOrderDate(), orderList);
     }
 
     @Override

@@ -13,7 +13,7 @@ public interface OrderListDao {
      *
      * @return ArrayList containing all Order objects in the inventory.
      */
-    ArrayList<Order> getAllOrders();
+    ArrayList<Order> getAllOrders(String orderDate);
 
     Order getAnOrder(Integer orderNumber);
 
@@ -29,7 +29,8 @@ public interface OrderListDao {
      * @return the Student object previously associated with the given
      * student id if it exists, null otherwise
      */
-    Order addOrder(Integer orderDate, Order order);
+
+    void addOrder(Order order);
 
     Order editOrder(String orderDate, String customerName);
 

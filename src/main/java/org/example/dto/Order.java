@@ -9,6 +9,7 @@ public class Order {
     private static int orders;
 
     // defining all instance attributes associated with each order
+    private String orderDate;
     private Integer orderNumber;
     private String customerName;
     private String state;
@@ -24,6 +25,14 @@ public class Order {
 
     // this constructor states that every time a new order is made, the number of orders increases by 1 and therefore
     // each order will be given a unique order number identifier
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(String orderDate) {
+        this.orderDate = orderDate;
+    }
 
     public Order() {
         this.orderNumber = orders += 1;

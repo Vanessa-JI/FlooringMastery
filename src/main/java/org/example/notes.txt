@@ -1,5 +1,10 @@
-1. Finish adding basic functionality -- i.e. get all the basic menu items working
+(1. Finish adding basic functionality -- i.e. get all the basic menu items working)
 2. Handle multiple order list functionality
+    a. View all orders -- weird hit enter to continue issue when i view orders for a given date
+    (b. Add an order)
+    c. edit an order
+    d. remove an order
+3. Add in product and tax DTO functionality
 4. Handle file I/O and associated exceptions
 3. Handle invalid inputs and other exceptions e.g. if an ordder number doesn't exist when trying to remove
 5. Change functionality to incorporate file I/O data

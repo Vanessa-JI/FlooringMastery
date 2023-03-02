@@ -65,7 +65,7 @@ public class OrderListController {
         Order newOrder = view.getNewOrderInfo();
 
         // store the order information in the dao
-        dao.addOrder(newOrder.getOrderNumber(), newOrder);
+        dao.addOrder(newOrder);
 
         // display a successful addition or not
         view.createOrderSuccessBanner();
@@ -74,7 +74,8 @@ public class OrderListController {
 
     public void viewAllOrders() {
         view.displayAllOrdersBanner();
-        ArrayList<Order> allOrders = dao.getAllOrders();
+        String orderDate = view.getOrderDate();
+        ArrayList<Order> allOrders = dao.getAllOrders(orderDate);
         view.displayAllOrders(allOrders);
     }
 

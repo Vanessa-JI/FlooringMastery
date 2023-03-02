@@ -28,12 +28,26 @@ public class OrderListView {
         String state = io.readString("Please enter the state to ship to: ");
 
         // SHOW PRICES -- can the view communicate with the service layer to access information from a different DTO via a DAO
+        io.print("\nAvailable products: ");
+        io.print("  - Carpet");
+        io.print("      * Cost per square foot: ADD THIS IN LATER");
+        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("  - Laminate");
+        io.print("      * Cost per square foot: ADD THIS IN LATER");
+        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("  - Tile");
+        io.print("      * Cost per square foot: ADD THIS IN LATER");
+        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("  - Wood");
+        io.print("      * Cost per square foot: ADD THIS IN LATER");
+        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
 
-        String productType = io.readString("From the available products shown, which product would you like to purchase?");
+        String productType = io.readString("\nFrom the available products shown, which product would you like to purchase?");
         String area = io.readString("What area (in square feet) would you like to purchase (minimum size 100sq.ft)?");
 
 
         Order newOrder = new Order();
+        newOrder.setOrderDate(orderDate);
         newOrder.setCustomerName(customerName);
         newOrder.setState(state);
 //        newOrder.setTaxRate();
@@ -64,7 +78,7 @@ public class OrderListView {
     }
 
     public String getOrderDate() {
-        String orderDate = io.readString("Please enter the order date: ");
+        String orderDate = io.readString("Please enter the order date in the form MM/DD/YYYY: ");
         return orderDate;
     }
 
@@ -113,7 +127,7 @@ public class OrderListView {
     }
 
     public ArrayList<Object> getOrderNumberAndDate() {
-        String orderDate = io.readString("Please enter the order date: ");
+        String orderDate = io.readString("Please enter the order date in the form MM/DD/YYYY: ");
         int orderNumber = io.readInt("Please enter the order number: ");
         ArrayList<Object> orderDetails = new ArrayList<>();
         orderDetails.add(orderDate);
