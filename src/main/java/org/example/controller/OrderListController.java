@@ -36,7 +36,7 @@ public class OrderListController {
                     addOrder();
                     break;
                 case 3:
-                    io.print("EDIT AN ORDER");
+                    editOrderInformation();
                     break;
                 case 4:
                     removeOrder();
@@ -89,20 +89,23 @@ public class OrderListController {
     // defining a method that handles the removal of required Order object from the list
     public void removeOrder() {
         view.displayRemoveOrderBanner();
-        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
         String orderDate = view.getOrderDate();
+        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
         Order dvd = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
         view.displayRemoveResults(); // view informs user if the removal of that order was successful
     }
 
     public void editOrderInformation() {
         view.displayEditOrderBanner(); // display banner to announce editing of information
-        String[] orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required DVD from user
-        Order order = dao.getOrder(orderDetails); // DAO retrieves order object using orderDetails as a search key
-        dao.removeOrder(orderDetails[0], orderDetails[1]); // unedited DVD object is removed from library by DAO
-        view.displayOrder(order);
-        Order newOrder = view.editOrderInformation(order);
-        dao.addOrder(newOrder.getOrderNumber(), newOrder); // new edited DVD is returned and added to the library
+        ArrayList<Object> orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required order from user
+        String orderDate = (String) orderDetails.get(0);
+        Integer orderNumber = (Integer) orderDetails.get(1);
+        Order order = dao.getAnOrder(orderNumber); // DAO retrieves order object using orderDetails as a search key
+//        dao.removeOrder(orderDate, orderNumber); // unedited Order object is removed from list by DAO
+//        view.displayAnOrder(order);
+        view.editOrderInformation(order);
+//        dao.addOrder(newOrder.getOrderNumber(), newOrder); // new edited Order is returned and added to the library
+        view.displayEditSuccessBanner(order);
     }
 //
 //    // load in a hashmap of hashmaps -- outer hashmap: k:v = orderDate:ordersHashMap, inner hashmap: k:v = orderNumber:orders

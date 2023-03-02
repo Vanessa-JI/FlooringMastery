@@ -55,6 +55,7 @@ public class OrderListView {
 
     public void createOrderSuccessBanner() {
         io.print("Successfully recorded new order.\n");
+        io.readString("Please hit enter to continue.");
     }
 
     public int getOrderNumber() {
@@ -97,7 +98,52 @@ public class OrderListView {
     }
 
     public void displayRemoveResults() {
-        io.print("Order successfully removed.\n");
+        io.print("\nOrder successfully removed.\n");
         io.readString("Please hit enter to continue. ");
+    }
+
+    public void displayEditOrderBanner() {
+        io.print("=== Editing order ===");
+    }
+
+    public void displayEditSuccessBanner(Order order) {
+        io.print("\nEdit complete! The new order details are listed below: ");
+        displayAnOrder(order);
+        io.readString("Please hit enter to continue. ");
+    }
+
+    public ArrayList<Object> getOrderNumberAndDate() {
+        String orderDate = io.readString("Please enter the order date: ");
+        int orderNumber = io.readInt("Please enter the order number: ");
+        ArrayList<Object> orderDetails = new ArrayList<>();
+        orderDetails.add(orderDate);
+        orderDetails.add(orderNumber);
+        return orderDetails;
+    }
+
+    public Order editOrderInformation(Order order) {
+        String customerName = io.readString("The current customer name is '" + order.getCustomerName()
+                + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+        String state = io.readString("\nThe current state is '" + order.getState()
+                + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+        String productType = io.readString("\nThe current product type is '" + order.getProductType()
+                + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+        String area = io.readString("\nThe current area is '" + order.getArea()
+                + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+
+        if (!customerName.equals("")) {
+            order.setCustomerName(customerName);
+        }
+        if (!state.equals("")) {
+            order.setState(state);
+        }
+        if (!productType.equals("")) {
+            order.setProductType(productType);
+        }
+        if (!area.equals("")) {
+            order.setArea(new BigDecimal(area));
+        }
+
+        return order;
     }
 }
