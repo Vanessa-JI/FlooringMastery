@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 // DTO class -- contains only getters and setters
 // Used to move data from one tier to another in applications
 public class Order {
+    // defining a single class attribute that increments by 1 every time an order is recorded
+    private static int orders;
 
     // defining all instance attributes associated with each order
     private Integer orderNumber;
@@ -20,9 +22,14 @@ public class Order {
     private BigDecimal tax;
     private BigDecimal total;
 
+    // this constructor states that every time a new order is made, the number of orders increases by 1 and therefore
+    // each order will be given a unique order number identifier
+
+    public Order() {
+        this.orderNumber = orders += 1;
+    }
+
     // defining all attribute getters and setters
-
-
     public Integer getOrderNumber() {
         return orderNumber;
     }
@@ -91,31 +98,31 @@ public class Order {
         return materialCost;
     }
 
-    public void setMaterialCost(BigDecimal materialCost) {
-        this.materialCost = materialCost;
+    public void setMaterialCost() {
+        this.materialCost = this.area.multiply(this.costPerSquareFoot);
     }
 
     public BigDecimal getLaborCost() {
         return laborCost;
     }
 
-    public void setLaborCost(BigDecimal laborCost) {
-        this.laborCost = laborCost;
+    public void setLaborCost() {
+        this.laborCost = this.area.multiply(this.laborCostPerSquareFoot);
     }
 
     public BigDecimal getTax() {
         return tax;
     }
 
-    public void setTax(BigDecimal tax) {
-        this.tax = tax;
+    public void setTax() {
+        this.tax = (this.materialCost.add(this.laborCost)).multiply(this.taxRate.divide(new BigDecimal("100")));
     }
 
     public BigDecimal getTotal() {
         return total;
     }
 
-    public void setTotal(BigDecimal total) {
-        this.total = total;
+    public void setTotal() {
+        this.total = this.materialCost.add(this.laborCost).add(this.tax);
     }
 }

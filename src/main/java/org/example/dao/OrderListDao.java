@@ -15,6 +15,8 @@ public interface OrderListDao {
      */
     ArrayList<Order> getAllOrders();
 
+    Order getAnOrder(Integer orderNumber);
+
     /**
      * Adds the given Order object to the inventory and associates it with the given
      * orderDate. If there is already an order associated with the given
@@ -22,12 +24,12 @@ public interface OrderListDao {
      * ,#####################EDIT THE DOCUMENTATION FROM HERE####################### it will return that student object, otherwise it will
      * return null.
      *
-     * @param studentId id with which student is to be associated
-     * @param student student to be added to the roster
+     * @param orderDate with which student is to be associated
+     * @param order to be added to the roster
      * @return the Student object previously associated with the given
      * student id if it exists, null otherwise
      */
-    Order addOrder(String orderDate, Order order);
+    Order addOrder(Integer orderDate, Order order);
 
     Order editOrder(String orderDate, String customerName);
 
@@ -49,11 +51,11 @@ public interface OrderListDao {
      * Returns the student object that is being removed or null if
      * there is no student associated with the given id
      *
-     * @param studentId id of student to be removed
+     * @param orderDate id of student to be removed
      * @return Student object that was removed or null if no student
      * was associated with the given student id
      */
-    Order removeOrder(String orderDate, String customerName);
+    Order removeOrder(String orderDate, Integer orderNumber);
 
     Order exportAllData();
 }

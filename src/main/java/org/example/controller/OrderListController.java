@@ -1,6 +1,8 @@
 package org.example.controller;
 
 import org.example.dao.OrderListDao;
+import org.example.dao.OrderListDaoFileImpl;
+import org.example.dto.Order;
 import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
@@ -13,10 +15,10 @@ public class OrderListController {
     private UserIO io = new UserIOConsoleImpl();
 
     // constructor instantiates both the DAO and the View
-//    public OrderListController(OrderListDao dao, OrderListView view) {
-//        this.dao = dao; // handles retrieval and storage of OrderList data
-//        this.view = view; // needed for user interaction
-//    }
+    public OrderListController(OrderListDao dao, OrderListView view) {
+        this.dao = dao; // handles retrieval and storage of OrderList data
+        this.view = view; // needed for user interaction
+    }
 
     // run method kicks off execution of entire program
     public void run() {
@@ -28,16 +30,16 @@ public class OrderListController {
 
             switch (menuSelection) {
                 case 1:
-                    io.print("DISPLAY ORDERS");
+                    viewAllOrders();
                     break;
                 case 2:
-                    io.print("ADD AN ORDER");
+                    addOrder();
                     break;
                 case 3:
                     io.print("EDIT AN ORDER");
                     break;
                 case 4:
-                    io.print("REMOVE AN ORDER");
+                    removeOrder();
                     break;
                 case 5:
                     io.print("EXPORT ALL DATA");
@@ -53,6 +55,75 @@ public class OrderListController {
         }
         io.print("GOOD BYE");
     } // End of run method
+
+    // defining method that controls the addition of an order to the orderList
+    public void addOrder() {
+        // display to the user that we're adding an order (view)
+        view.displayAddOrderBanner();
+
+        // get the order information from the user and return an Order object (view)
+        Order newOrder = view.getNewOrderInfo();
+
+        // store the order information in the dao
+        dao.addOrder(newOrder.getOrderNumber(), newOrder);
+
+        // display a successful addition or not
+        view.createOrderSuccessBanner();
+
+    }
+
+    public void viewAllOrders() {
+        view.displayAllOrdersBanner();
+        ArrayList<Order> allOrders = dao.getAllOrders();
+        view.displayAllOrders(allOrders);
+    }
+
+    // defining a method that handles displaying all information about an order to a user
+    private void viewAnOrder() {
+        view.displayAnOrderBanner();
+        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
+        Order order = dao.getAnOrder(orderNumber); // DAO retrieves Order object using orderNumber as a search key
+        view.displayAnOrder(order); // view reports all Order object information to user
+    }
+
+    // defining a method that handles the removal of required Order object from the list
+    public void removeOrder() {
+        view.displayRemoveOrderBanner();
+        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
+        String orderDate = view.getOrderDate();
+        Order dvd = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
+        view.displayRemoveResults(); // view informs user if the removal of that order was successful
+    }
+
+    public void editOrderInformation() {
+        view.displayEditOrderBanner(); // display banner to announce editing of information
+        String[] orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required DVD from user
+        Order order = dao.getOrder(orderDetails); // DAO retrieves order object using orderDetails as a search key
+        dao.removeOrder(orderDetails[0], orderDetails[1]); // unedited DVD object is removed from library by DAO
+        view.displayOrder(order);
+        Order newOrder = view.editOrderInformation(order);
+        dao.addOrder(newOrder.getOrderNumber(), newOrder); // new edited DVD is returned and added to the library
+    }
+//
+//    // load in a hashmap of hashmaps -- outer hashmap: k:v = orderDate:ordersHashMap, inner hashmap: k:v = orderNumber:orders
+//    public void loadOrderLists() throws DVDLibraryDaoException {
+//        view.displayLoadingBanner();
+//        dao.loadLibrary();
+//    }
+//
+//    public void loadProductList() throws DVDLibraryDaoException {
+//        view.displayLoadingBanner();
+//        dao.loadLibrary();
+//    }
+//
+//    public void loadProductList() throws DVDLibraryDaoException {
+//        view.displayLoadingBanner();
+//        dao.loadLibrary();
+//    }
+
+
+
+
 } // End of class definition
 
 
@@ -97,51 +168,12 @@ public class OrderListController {
 //        } // End of while loop
 //    } // End of run function
 
-//    // defining a method that handles editing of DVD object information in the library
-//    public void editInformation() {
-//        view.displayEditDVDBanner(); // display banner to announce editing of information
-//        String title = view.getTitleToSearch(); // view retrieves the title of required DVD from user
-//        DVD dvd = dao.getDVD(title); // DAO retrieves DVD object using title as a search key
-//        dao.removeDVD(title); // unedited DVD object is removed from library by DAO
-//        view.displayDVD(dvd);
-//        DVD newDVD = view.editDVDInformation(dvd);
-//        dao.addDVD(newDVD.getTitle(), newDVD); // new edited DVD is returned and added to the library
-//    }
 //
-//    // defining a method that handles the removal of required DVD object from the library
-//    public void removeDVD() {
-//        view.displayRemoveDVDBanner(); // inform user that they selected to remove DVD
-//        String title = view.getTitleToSearch(); // view retrieves title of required DVD
-//        DVD dvd = dao.removeDVD(title); // DAO removes required DVD object from library
-//        view.displayRemoveResults(dvd); // view informs user if the removal of that DVD was successful
-//    }
+
 //
-//    // defining a method that handles displaying all information about a DVD to a user
-//    private void viewDVD() {
-//        view.displayGetDVDBanner();
-//        String title = view.getTitleToSearch(); // view retrieves title of required DVD
-//        DVD dvd = dao.getDVD(title); // DAO retrieves DVD object using title as a search key
-//        view.displayDVD(dvd); // view reports all DVD object information to user
-//    }
+
 //
-//    // defining a method that lists all DVDs currently in the DVD library
-//    private void listDVDs() {
-//        view.displayListAllBanner();
-//        ArrayList<DVD> dvdList = dao.getAllDVDs(); // DAO retrieves all DVDs in the library and returns them as a list
-//        view.listAll(dvdList); // view lists all DVDs in the library
-//    }
 //
-//    private void createDVD() {
-//        view.displayCreateDVDBanner();
-//        DVD newDVD = view.getNewDVD(); // view retrieves all information user inputs that is needed to create a new DVD
-//        dao.addDVD(newDVD.getTitle(), newDVD); // DAO creates a new DVD object and adds it to the library
-//        view.displayCreateSuccessBanner();
-//    }
-//
-//    // private method to get the final menu selection
-//    private int getUserSelection() {
-//        return view.getMenuSelection();
-//    }
 //
 //    // method to load the DVD library from a comma separated text file
 //    public void loadLibrary() throws DVDLibraryDaoException {

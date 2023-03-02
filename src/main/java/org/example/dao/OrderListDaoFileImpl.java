@@ -6,20 +6,30 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 // store DTO information in the DAO
-public class OrderListDaoFileImpl implements OrderListDao{
+public class OrderListDaoFileImpl implements OrderListDao {
 
     // defining a private class attribute to hold all orders in a HashMap object
-    private HashMap<String, Order> orderList = new HashMap<>();
+    private HashMap<Integer, Order> orderList = new HashMap<>();
+
+    // RIGHT NOW, WE'RE ASSUMING WE HAVE ONE ORDER LIST FOR ONE DATE -- WILL EXPAND FUNCTIONALITY TO BUILD MULTIPLE ORDER LISTS FOR MULTIPLE DATES
+    // DO THIS BEFORE TACKLING FILE I/O
+     private HashMap<String, HashMap<Integer, Order>> allOrders = new HashMap<>();
 
 
     @Override
+    // NEED TO UPDATE THIS SUCH THAT WE SEARCH FOR THE ORDER DATE TO FIND THE ORDER IN THE HASHMAP RELATED TO THIS DATE
     public ArrayList<Order> getAllOrders() {
-        return null;
+        return new ArrayList<>(orderList.values());
     }
 
     @Override
-    public Order addOrder(String orderDate, Order order) {
-        Order newOrder = orderList.put(orderDate, order);
+    public Order getAnOrder(Integer orderNumber) {
+        return orderList.get(orderNumber);
+    }
+
+    @Override
+    public Order addOrder(Integer orderNumber, Order order) {
+        Order newOrder = orderList.put(orderNumber, order);
         return newOrder;
     }
 
@@ -29,8 +39,8 @@ public class OrderListDaoFileImpl implements OrderListDao{
     }
 
     @Override
-    public Order removeOrder(String orderDate, String customerName) {
-        return null;
+    public Order removeOrder(String orderDate, Integer orderNumber) {
+        return orderList.remove(orderNumber);
     }
 
     @Override
