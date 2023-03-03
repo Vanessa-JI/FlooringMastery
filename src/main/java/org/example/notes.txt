@@ -10,7 +10,7 @@ Friday
     (a. input order date must be in the future)
     (b. customer name must not be blank, limited to characters [a-z][0-9] and periods and commas)
     c. states must be checked against the tax file -- if they are in the tax folder, we can sell there
-    ### d. must enter a product name that is in the product list
+    (d. must enter a product name that is in the product list)
     (e. area must be a positive decimal, minimum order size is 100)
     f. display order -- if order date isn't valid, let it loop until a valid date is input
     g. do this loop thing for all places where i have to enter an option in a menu

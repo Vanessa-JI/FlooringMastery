@@ -29,16 +29,13 @@ public class OrderListView {
 
     public Order getNewOrderInfo(ArrayList<Product> allProducts, ArrayList<Tax> allTaxes) throws ParseException {
         Order newOrder = new Order();
-
         String orderDate = io.readString("Please enter the order date in the form MM/DD/YYYY: ");
         orderDate = checkOrderDate(orderDate);
-
-
         String customerName = io.readString("\nPlease enter the customer name: ");
         customerName = checkCustomerName(customerName);
         String state = io.readString("\nPlease enter the state to ship to: ");
+        state = checkState(state, allTaxes, newOrder);
 
-        // SHOW PRICES -- can the view communicate with the service layer to access information from a different DTO via a DAO
         io.print("\nAvailable products: ");
         io.print("  - Carpet");
         io.print("      * Cost per square foot: ADD THIS IN LATER");
@@ -56,22 +53,12 @@ public class OrderListView {
         String productType = io.readString("\nFrom the available products shown, which product would you like to purchase?");
         productType = checkProductType(productType, allProducts, newOrder);
 
-        // look through arrayList of Taxes
-        double taxRate;
-        for (Tax currTax : allTaxes) {
-            if (currTax.getState().equals(state) || currTax.getStateName().equals(state)) {
-                taxRate = currTax.getTaxRate();
-                newOrder.setTaxRate(new BigDecimal(taxRate));
-                break;
-            }
-        }
-
         String area = io.readString("\nWhat area (in square feet) would you like to purchase (minimum size 100sq.ft)?");
         area = checkArea(area);
 
         newOrder.setOrderDate(orderDate);
         newOrder.setCustomerName(customerName);
-        newOrder.setState(state);
+        newOrder.setState(state.toUpperCase());
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
         newOrder.setMaterialCost();
@@ -95,7 +82,6 @@ public class OrderListView {
 //            } catch (ParseException e) {
 //                io.readString("Please enter a valid date in the form MM/DD/YYYY: ");
 //            }
-
         }
 
         return orderDate;
@@ -167,6 +153,40 @@ public class OrderListView {
         }
         return area;
     }
+
+    public Tax getTax(String state, ArrayList<Tax> allTaxes) {
+        Tax currTax = new Tax(state);
+        for (Tax tax : allTaxes) {
+            if ( tax.getStateName().toLowerCase().equals(state.toLowerCase()) ||
+                    tax.getState().toLowerCase().equals(state.toLowerCase()) ){
+                return tax;
+            }
+        }
+        return currTax;
+    }
+
+    public String checkState(String state, ArrayList<Tax> allTaxes, Order newOrder) {
+
+        // look through arrayList of Taxes
+        ArrayList<String> taxNames = new ArrayList<>();
+        for (Tax tax : allTaxes) {
+            taxNames.add(tax.getState().toLowerCase());
+            taxNames.add(tax.getState().toLowerCase());
+        } // COULD FIGURE OUT A BETTER PLACE TO PUT THIS CODE
+        double taxRate;
+        boolean stateIsValid = false;
+        while (!stateIsValid) {
+                if (taxNames.contains(state.toLowerCase())) {
+                    Tax tax = getTax(state, allTaxes);
+                    taxRate = tax.getTaxRate();
+                    newOrder.setTaxRate(new BigDecimal(taxRate));
+                    return state;
+                }
+                state = io.readString("Please try another state.");
+            }
+        return state;
+    }
+
     public void displayAddOrderBanner() {
         io.print("=== Create new order ===\n");
     }
