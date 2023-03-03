@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Updated functionality to get the area with restrictions on the area value implemented">
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="`Updated customerName input functionality to only accept alphanumeric characters and numbers, commas, and periods. Also added functionality for only accepting future order dates.`">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoFileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dto/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dto/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677843042585</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="`Updated customerName input functionality to only accept alphanumeric characters and numbers, commas, and periods. Also added functionality for only accepting future order dates.`">
+      <created>1677846866268</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1677846866268</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -108,7 +116,8 @@
     <MESSAGE value="Finished implementing editOrder functionality" />
     <MESSAGE value="Finished implementing addOrder functionality with multiple order dates" />
     <MESSAGE value="Updated functionality to get the area with restrictions on the area value implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated functionality to get the area with restrictions on the area value implemented" />
+    <MESSAGE value="`Updated customerName input functionality to only accept alphanumeric characters and numbers, commas, and periods. Also added functionality for only accepting future order dates.`" />
+    <option name="LAST_COMMIT_MESSAGE" value="`Updated customerName input functionality to only accept alphanumeric characters and numbers, commas, and periods. Also added functionality for only accepting future order dates.`" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -121,6 +130,11 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

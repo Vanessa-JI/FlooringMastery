@@ -1,27 +1,38 @@
 package org.example.controller;
 
 import org.example.dao.OrderListDao;
+import org.example.dao.ProductListDao;
 import org.example.dto.Order;
+import org.example.dto.Product;
 import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class OrderListController {
     private OrderListView view;
     private OrderListDao dao;
+    private ProductListDao prodDao;
     private UserIO io = new UserIOConsoleImpl();
 
     // constructor instantiates both the DAO and the View
-    public OrderListController(OrderListDao dao, OrderListView view) {
+    public OrderListController(OrderListDao dao, ProductListDao prodDao, OrderListView view) {
         this.dao = dao; // handles retrieval and storage of OrderList data
         this.view = view; // needed for user interaction
+        this.prodDao = prodDao;
     }
 
+
     // run method kicks off execution of entire program
-    public void startMainProgram() throws ParseException {
+    public void startMainProgram() throws ParseException, FileNotFoundException {
+        prodDao.loadLibrary();
+        System.out.println("Loaded prodLib");
         boolean running = true;
         int selection = 0;
         while (running) {
