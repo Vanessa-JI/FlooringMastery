@@ -1,6 +1,8 @@
 package org.example.ui;
 
 import org.example.dto.Order;
+import org.example.dto.Product;
+import org.example.dto.Tax;
 
 import java.math.BigDecimal;
 import java.text.ParseException;
@@ -25,9 +27,12 @@ public class OrderListView {
         return io.readInt("\nPlease select from the available options. ", 1, 6);
     }
 
-    public Order getNewOrderInfo() throws ParseException {
+    public Order getNewOrderInfo(ArrayList<Product> allProducts, ArrayList<Tax> allTaxes) throws ParseException {
+        Order newOrder = new Order();
+
         String orderDate = io.readString("Please enter the order date in the form MM/DD/YYYY: ");
         orderDate = checkOrderDate(orderDate);
+
 
         String customerName = io.readString("\nPlease enter the customer name: ");
         customerName = checkCustomerName(customerName);
@@ -49,23 +54,47 @@ public class OrderListView {
         io.print("      * Labor cost per square foot: ADD THIS IN LATER");
 
         String productType = io.readString("\nFrom the available products shown, which product would you like to purchase?");
+        // look through arrayList of Taxes
+
+        productType = checkProductType(productType, allProducts);
+
+        double taxRate;
+        for (Tax currTax : allTaxes) {
+            if (currTax.getState().equals(state) || currTax.getStateName().equals(state)) {
+                taxRate = currTax.getTaxRate();
+                newOrder.setTaxRate(new BigDecimal(taxRate));
+                break;
+            }
+        }
+
         String area = io.readString("\nWhat area (in square feet) would you like to purchase (minimum size 100sq.ft)?");
         area = checkArea(area);
 
-        Order newOrder = new Order();
         newOrder.setOrderDate(orderDate);
         newOrder.setCustomerName(customerName);
         newOrder.setState(state);
-//        newOrder.setTaxRate();
+
+
+
+        // look through arrayList of Products
+        double costPerSquareFoot;
+        double laborCostPerSquareFoot;
+
+        for (Product currProduct : allProducts) {
+            if (currProduct.getProductType().toLowerCase().equals(productType.toLowerCase())) {
+                costPerSquareFoot = currProduct.getCostPerSquareFoot();
+                laborCostPerSquareFoot = currProduct.getLaborCostPerSquareFoot();
+                newOrder.setCostPerSquareFoot(new BigDecimal(costPerSquareFoot));
+                newOrder.setLaborCostPerSquareFoot(new BigDecimal(laborCostPerSquareFoot));
+            }
+        }
+
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
-
-//        newOrder.setCostPerSquareFoot();
-//        newOrder.setLaborCostPerSquareFoot();
-//        newOrder.setMaterialCost();
-//        newOrder.setLaborCost();
-//        newOrder.setTax();
-//        newOrder.setTotal();
+        newOrder.setMaterialCost();
+        newOrder.setLaborCost();
+        newOrder.setTax();
+        newOrder.setTotal();
 
         return newOrder;
     }
@@ -108,6 +137,22 @@ public class OrderListView {
             nameIsValid = true;
         }
         return customerName;
+    }
+
+    public String checkProductType(String productType, ArrayList<Product> allProducts) {
+        ArrayList<String> productNames = new ArrayList<>();
+        for (Product product : allProducts) {
+            productNames.add(product.getProductType().toLowerCase());
+        } // COULD FIGURE OUT A BETTER PLACE TO PUT THIS CODE
+        boolean productIsValid = false;
+        while (!productIsValid) {
+            if (productNames.contains(productType.toLowerCase())) {
+                break;
+            } else {
+                productType = io.readString("Please enter a product shown in the list above.");
+            }
+        }
+        return productType.substring(0, 1).toUpperCase() + productType.substring(1);
     }
 
     public String checkArea(String area) {

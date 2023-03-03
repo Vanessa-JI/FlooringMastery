@@ -4,24 +4,33 @@
     (b. Add an order)
     (c. edit an order)
     (d. remove an order)
+
+Friday
 3. Handle invalid inputs and other exceptions e.g. if an order number doesn't exist when trying to remove
     (a. input order date must be in the future)
     (b. customer name must not be blank, limited to characters [a-z][0-9] and periods and commas)
     c. states must be checked against the tax file -- if they are in the tax folder, we can sell there
-    d. must enter a product name that is in the product list
+    ### d. must enter a product name that is in the product list
     (e. area must be a positive decimal, minimum order size is 100)
     f. display order -- if order date isn't valid, let it loop until a valid date is input
     g. do this loop thing for all places where i have to enter an option in a menu
-3. Add in product and tax DTO functionality
+(3. Add in product and tax DTO functionality)
 4. Handle file I/O and associated exceptions
 7. Add lambdas and streams functionality
+
+
+Saturday
 4. Fix order number situation -- each day starts off order number count at 0
-5. Change functionality to incorporate file I/O data
 6. Add JUnit testing functionality
 6. Spring DI functionality
+10. Implement service layer functionality
+
+
+Sunday
 7. Edit the OrderListDao so it includes all methods mentioned in FileImpl
-8. Add comments
+8. Add comments and documentation
 9. Find all methods with 'throws' and add a try-catch
+10. Fix @Override annotations appearing where they shouldn't be
 
 
 

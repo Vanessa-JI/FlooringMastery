@@ -56,4 +56,9 @@ public class ProductListDaoFileImpl implements ProductListDao {
         }
         scanner.close();
     }
+
+    @Override
+    public ArrayList<Product> getAllProducts() {
+        return new ArrayList<Product>(products.values());
+    }
 }

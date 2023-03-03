@@ -5,6 +5,7 @@ import org.example.dao.ProductListDao;
 import org.example.dao.TaxListDao;
 import org.example.dto.Order;
 import org.example.dto.Product;
+import org.example.dto.Tax;
 import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
@@ -75,9 +76,12 @@ public class OrderListController {
     public void addOrder() throws ParseException {
         // display to the user that we're adding an order (view)
         view.displayAddOrderBanner();
+        ArrayList<Product> allProducts = prodDao.getAllProducts();
+        ArrayList<Tax> allTaxes = taxDao.getAllTaxes();
 
         // get the order information from the user and return an Order object (view)
-        Order newOrder = view.getNewOrderInfo();
+        Order newOrder = view.getNewOrderInfo(allProducts, allTaxes);
+
 
         // store the order information in the dao
         dao.addOrder(newOrder);

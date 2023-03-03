@@ -6,6 +6,7 @@ import org.example.dto.Tax;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -57,5 +58,10 @@ public class TaxListDaoFileImpl implements TaxListDao {
             taxes.put(currentTax.getState(), currentTax); // add this DVD object to the library of DVDs
         }
         scanner.close();
+    }
+
+    @Override
+    public ArrayList<Tax> getAllTaxes() {
+        return new ArrayList<Tax>(taxes.values());
     }
 }

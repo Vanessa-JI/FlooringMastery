@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Implemented functionality to load product list and details of products">
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Implemented functionality to load taxes list and details of taxes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoFileImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/TaxListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/TaxListDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/TaxListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/TaxListDaoFileImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dto/Tax.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dto/Tax.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/ProductListView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/TaxListView.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677848314001</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Implemented functionality to load taxes list and details of taxes">
+      <created>1677849362476</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1677849362476</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -130,7 +134,8 @@
     <MESSAGE value="Updated functionality to get the area with restrictions on the area value implemented" />
     <MESSAGE value="`Updated customerName input functionality to only accept alphanumeric characters and numbers, commas, and periods. Also added functionality for only accepting future order dates.`" />
     <MESSAGE value="Implemented functionality to load product list and details of products" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented functionality to load product list and details of products" />
+    <MESSAGE value="Implemented functionality to load taxes list and details of taxes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented functionality to load taxes list and details of taxes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -146,8 +151,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="10" />
+          <line>74</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
+          <line>60</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
