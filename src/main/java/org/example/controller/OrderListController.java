@@ -1,12 +1,12 @@
 package org.example.controller;
 
 import org.example.dao.OrderListDao;
-import org.example.dao.OrderListDaoFileImpl;
 import org.example.dto.Order;
 import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class OrderListController {
@@ -21,7 +21,7 @@ public class OrderListController {
     }
 
     // run method kicks off execution of entire program
-    public void run() {
+    public void startMainProgram() throws ParseException {
         boolean running = true;
         int selection = 0;
         while (running) {
@@ -57,7 +57,7 @@ public class OrderListController {
     } // End of run method
 
     // defining method that controls the addition of an order to the orderList
-    public void addOrder() {
+    public void addOrder() throws ParseException {
         // display to the user that we're adding an order (view)
         view.displayAddOrderBanner();
 

@@ -3,7 +3,10 @@ package org.example.ui;
 import org.example.dto.Order;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderListView {
 
@@ -22,9 +25,12 @@ public class OrderListView {
         return io.readInt("\nPlease select from the available options. ", 1, 6);
     }
 
-    public Order getNewOrderInfo() {
+    public Order getNewOrderInfo() throws ParseException {
         String orderDate = io.readString("Please enter the order date in the form MM/DD/YYYY: ");
+        orderDate = checkOrderDate(orderDate);
+
         String customerName = io.readString("\nPlease enter the customer name: ");
+        customerName = checkCustomerName(customerName);
         String state = io.readString("\nPlease enter the state to ship to: ");
 
         // SHOW PRICES -- can the view communicate with the service layer to access information from a different DTO via a DAO
@@ -61,6 +67,46 @@ public class OrderListView {
 //        newOrder.setTotal();
 
         return newOrder;
+    }
+
+    public String checkOrderDate(String orderDate) throws ParseException {
+        boolean dateIsValid = false;
+        while (!dateIsValid) {
+//            try {
+                Date futureDate = new SimpleDateFormat("MM/dd/yyyy").parse(orderDate);
+                if (futureDate.before(new Date())) {
+                    orderDate = io.readString("Please enter a valid order date. The order date must be in the future.");
+                } else {
+                    break;
+                }
+//            } catch (ParseException e) {
+//                io.readString("Please enter a valid date in the form MM/DD/YYYY: ");
+//            }
+
+        }
+
+        return orderDate;
+    }
+
+    public String checkCustomerName(String customerName) {
+        boolean nameIsValid = false;
+        while (!nameIsValid) {
+            if (customerName.isBlank()) {
+                customerName = io.readString("Please enter a valid name. The name must contain " +
+                        "only alphanumeric characters, commas, and periods.");
+                continue;
+            }
+            // defining conditions for a valid name
+            for (int i = 0; i < customerName.length(); i++) {
+                char c = customerName.charAt(i);
+                if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z') && !(Character.isDigit(c)) && (c != '.') && (c != ',')) {
+                    customerName = io.readString("Please enter a valid name. The name must contain " +
+                            "only alphanumeric characters, commas, and periods.");
+                }
+            }
+            nameIsValid = true;
+        }
+        return customerName;
     }
 
     public String checkArea(String area) {
@@ -148,6 +194,9 @@ public class OrderListView {
     public Order editOrderInformation(Order order) {
         String customerName = io.readString("The current customer name is '" + order.getCustomerName()
                 + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+        if (!customerName.isBlank()) {
+            checkCustomerName(customerName);
+        }
         String state = io.readString("\nThe current state is '" + order.getState()
                 + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
         String productType = io.readString("\nThe current product type is '" + order.getProductType()
@@ -156,8 +205,9 @@ public class OrderListView {
 
         String area = io.readString("\nThe current area is '" + order.getArea()
                     + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
-        area = checkArea(area);
-
+        if (!area.isBlank()) {
+            area = checkArea(area);
+        }
 
         if (!customerName.equals("")) {
             order.setCustomerName(customerName);
