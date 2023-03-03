@@ -54,10 +54,9 @@ public class OrderListView {
         io.print("      * Labor cost per square foot: ADD THIS IN LATER");
 
         String productType = io.readString("\nFrom the available products shown, which product would you like to purchase?");
+        productType = checkProductType(productType, allProducts, newOrder);
+
         // look through arrayList of Taxes
-
-        productType = checkProductType(productType, allProducts);
-
         double taxRate;
         for (Tax currTax : allTaxes) {
             if (currTax.getState().equals(state) || currTax.getStateName().equals(state)) {
@@ -73,22 +72,6 @@ public class OrderListView {
         newOrder.setOrderDate(orderDate);
         newOrder.setCustomerName(customerName);
         newOrder.setState(state);
-
-
-
-        // look through arrayList of Products
-        double costPerSquareFoot;
-        double laborCostPerSquareFoot;
-
-        for (Product currProduct : allProducts) {
-            if (currProduct.getProductType().toLowerCase().equals(productType.toLowerCase())) {
-                costPerSquareFoot = currProduct.getCostPerSquareFoot();
-                laborCostPerSquareFoot = currProduct.getLaborCostPerSquareFoot();
-                newOrder.setCostPerSquareFoot(new BigDecimal(costPerSquareFoot));
-                newOrder.setLaborCostPerSquareFoot(new BigDecimal(laborCostPerSquareFoot));
-            }
-        }
-
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
         newOrder.setMaterialCost();
@@ -139,14 +122,32 @@ public class OrderListView {
         return customerName;
     }
 
-    public String checkProductType(String productType, ArrayList<Product> allProducts) {
+    public Product getProduct(String productType, ArrayList<Product> allProducts) {
+        Product currProduct = new Product(productType);
+        for (Product product : allProducts) {
+            if (product.getProductType().toLowerCase().equals(productType)) {
+                return product;
+            }
+        }
+        return currProduct;
+    }
+
+    public String checkProductType(String productType, ArrayList<Product> allProducts, Order newOrder) {
         ArrayList<String> productNames = new ArrayList<>();
+        double costPerSquareFoot;
+        double laborCostPerSquareFoot;
         for (Product product : allProducts) {
             productNames.add(product.getProductType().toLowerCase());
         } // COULD FIGURE OUT A BETTER PLACE TO PUT THIS CODE
         boolean productIsValid = false;
         while (!productIsValid) {
             if (productNames.contains(productType.toLowerCase())) {
+                // find the product object with the associated productType
+                Product currProduct = getProduct(productType, allProducts);
+                costPerSquareFoot = currProduct.getCostPerSquareFoot();
+                laborCostPerSquareFoot = currProduct.getLaborCostPerSquareFoot();
+                newOrder.setCostPerSquareFoot(new BigDecimal(costPerSquareFoot));
+                newOrder.setLaborCostPerSquareFoot(new BigDecimal(laborCostPerSquareFoot));
                 break;
             } else {
                 productType = io.readString("Please enter a product shown in the list above.");
