@@ -59,6 +59,7 @@ public class OrderListView {
 //        newOrder.setTaxRate();
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
+
 //        newOrder.setCostPerSquareFoot();
 //        newOrder.setLaborCostPerSquareFoot();
 //        newOrder.setMaterialCost();

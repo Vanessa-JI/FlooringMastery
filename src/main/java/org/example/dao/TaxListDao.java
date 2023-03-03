@@ -1,4 +1,7 @@
 package org.example.dao;
 
-public class TaxListDao {
+import java.io.FileNotFoundException;
+
+public interface TaxListDao {
+    void loadLibrary() throws FileNotFoundException;
 }

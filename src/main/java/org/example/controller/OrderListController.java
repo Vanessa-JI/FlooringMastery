@@ -2,6 +2,7 @@ package org.example.controller;
 
 import org.example.dao.OrderListDao;
 import org.example.dao.ProductListDao;
+import org.example.dao.TaxListDao;
 import org.example.dto.Order;
 import org.example.dto.Product;
 import org.example.ui.OrderListView;
@@ -19,19 +20,22 @@ public class OrderListController {
     private OrderListView view;
     private OrderListDao dao;
     private ProductListDao prodDao;
+    private TaxListDao taxDao;
     private UserIO io = new UserIOConsoleImpl();
 
     // constructor instantiates both the DAO and the View
-    public OrderListController(OrderListDao dao, ProductListDao prodDao, OrderListView view) {
+    public OrderListController(OrderListDao dao, ProductListDao prodDao, TaxListDao taxDao, OrderListView view) {
         this.dao = dao; // handles retrieval and storage of OrderList data
         this.view = view; // needed for user interaction
         this.prodDao = prodDao;
+        this.taxDao = taxDao;
     }
 
 
     // run method kicks off execution of entire program
     public void startMainProgram() throws ParseException, FileNotFoundException {
         prodDao.loadLibrary();
+        taxDao.loadLibrary();
         System.out.println("Loaded prodLib");
         boolean running = true;
         int selection = 0;

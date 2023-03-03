@@ -22,3 +22,8 @@
 7. Edit the OrderListDao so it includes all methods mentioned in FileImpl
 8. Add comments
 9. Find all methods with 'throws' and add a try-catch
+
+
+
+ASK EUGENE --
+1. How to set the costpersquarefoot etc attributes -- how does my view communicate with the ProductListDao?
