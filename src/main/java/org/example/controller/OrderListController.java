@@ -79,20 +79,20 @@ public class OrderListController {
         view.displayAllOrders(allOrders);
     }
 
-    // defining a method that handles displaying all information about an order to a user
-    private void viewAnOrder() {
-        view.displayAnOrderBanner();
-        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
-        Order order = dao.getAnOrder(orderNumber); // DAO retrieves Order object using orderNumber as a search key
-        view.displayAnOrder(order); // view reports all Order object information to user
-    }
+//    // defining a method that handles displaying all information about an order to a user
+//    private void viewAnOrder() {
+//        view.displayAnOrderBanner();
+//        Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
+//        Order order = dao.getAnOrder(orderNumber); // DAO retrieves Order object using orderNumber as a search key
+//        view.displayAnOrder(order); // view reports all Order object information to user
+//    }
 
     // defining a method that handles the removal of required Order object from the list
     public void removeOrder() {
         view.displayRemoveOrderBanner();
         String orderDate = view.getOrderDate();
         Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
-        Order dvd = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
+        Order order = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
         view.displayRemoveResults(); // view informs user if the removal of that order was successful
     }
 
@@ -101,7 +101,7 @@ public class OrderListController {
         ArrayList<Object> orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required order from user
         String orderDate = (String) orderDetails.get(0);
         Integer orderNumber = (Integer) orderDetails.get(1);
-        Order order = dao.getAnOrder(orderNumber); // DAO retrieves order object using orderDetails as a search key
+        Order order = dao.getAnOrder(orderDate, orderNumber); // DAO retrieves order object using orderDetails as a search key
 //        dao.removeOrder(orderDate, orderNumber); // unedited Order object is removed from list by DAO
 //        view.displayAnOrder(order);
         view.editOrderInformation(order);

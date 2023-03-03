@@ -15,7 +15,7 @@ public interface OrderListDao {
      */
     ArrayList<Order> getAllOrders(String orderDate);
 
-    Order getAnOrder(Integer orderNumber);
+    Order getAnOrder(String orderDate, Integer orderNumber);
 
     /**
      * Adds the given Order object to the inventory and associates it with the given
