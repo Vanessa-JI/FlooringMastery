@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Updated valid product selection to fix crashing after setting tax rate">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Implemented functionality to only allow for valid state inputs">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
     </list>
@@ -132,7 +132,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677857681777</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implemented functionality to only allow for valid state inputs">
+      <created>1677859199386</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1677859199386</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -146,7 +153,8 @@
     <MESSAGE value="Implemented functionality to load taxes list and details of taxes" />
     <MESSAGE value="Implemented functionality to only allow selection of products in the product list" />
     <MESSAGE value="Updated valid product selection to fix crashing after setting tax rate" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated valid product selection to fix crashing after setting tax rate" />
+    <MESSAGE value="Implemented functionality to only allow for valid state inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented functionality to only allow for valid state inputs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -162,13 +170,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>73</line>
+          <line>60</line>
           <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>190</line>
-          <option name="timeStamp" value="18" />
+          <line>170</line>
+          <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

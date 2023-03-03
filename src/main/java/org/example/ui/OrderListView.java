@@ -258,17 +258,24 @@ public class OrderListView {
         return orderDetails;
     }
 
-    public Order editOrderInformation(Order order) {
+    public Order editOrderInformation(Order order, ArrayList<Product> allProducts, ArrayList<Tax> allTaxes) {
         String customerName = io.readString("The current customer name is '" + order.getCustomerName()
                 + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
         if (!customerName.isBlank()) {
             checkCustomerName(customerName);
         }
+
         String state = io.readString("\nThe current state is '" + order.getState()
                 + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
+        if (!state.isBlank()) {
+            checkState(state, allTaxes, order);
+        }
+
         String productType = io.readString("\nThe current product type is '" + order.getProductType()
                 + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");
-
+        if (!productType.isBlank()) {
+            checkState(state, allTaxes, order);
+        }
 
         String area = io.readString("\nThe current area is '" + order.getArea()
                     + "'. \nPlease enter a new value or hit the ENTER key if you do not wish to change it: ");

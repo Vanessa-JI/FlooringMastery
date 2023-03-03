@@ -121,9 +121,11 @@ public class OrderListController {
         String orderDate = (String) orderDetails.get(0);
         Integer orderNumber = (Integer) orderDetails.get(1);
         Order order = dao.getAnOrder(orderDate, orderNumber); // DAO retrieves order object using orderDetails as a search key
+        ArrayList<Product> allProducts = prodDao.getAllProducts();
+        ArrayList<Tax> allTaxes = taxDao.getAllTaxes();
 //        dao.removeOrder(orderDate, orderNumber); // unedited Order object is removed from list by DAO
 //        view.displayAnOrder(order);
-        view.editOrderInformation(order);
+        view.editOrderInformation(order, allProducts, allTaxes);
 //        dao.addOrder(newOrder.getOrderNumber(), newOrder); // new edited Order is returned and added to the library
         view.displayEditSuccessBanner(order);
     }
