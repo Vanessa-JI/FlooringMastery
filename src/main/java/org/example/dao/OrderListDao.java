@@ -62,5 +62,5 @@ public interface OrderListDao {
 
     void loadLibrary() throws FileNotFoundException;
 
-    void writeLibrary2();
+    void writeLibrary();
 }

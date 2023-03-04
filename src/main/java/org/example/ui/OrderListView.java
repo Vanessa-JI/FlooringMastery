@@ -61,10 +61,26 @@ public class OrderListView {
         newOrder.setState(state.toUpperCase());
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
+        Product currProduct = getProduct(productType, allProducts);
+//        System.out.println(currProduct.getProductType());
+//        System.out.println(getProduct(productType, allProducts).toString());
+//        System.out.println(getProduct(productType, allProducts).getProductType());
+//        System.out.println(getProduct(productType, allProducts).getCostPerSquareFoot());
+//        System.out.println(new BigDecimal(getProduct(productType, allProducts).getCostPerSquareFoot()).toString());
+        newOrder.setCostPerSquareFoot(new BigDecimal(getProduct(productType, allProducts).getCostPerSquareFoot()));
         newOrder.setMaterialCost();
+        newOrder.setLaborCostPerSquareFoot(new BigDecimal(getProduct(productType, allProducts).getLaborCostPerSquareFoot()));
         newOrder.setLaborCost();
+        newOrder.setTaxRate(new BigDecimal(getTax(state, allTaxes).getTaxRate()));
         newOrder.setTax();
         newOrder.setTotal();
+//        System.out.println(newOrder.getCostPerSquareFoot().toString());
+//        System.out.println(newOrder.getLaborCostPerSquareFoot().toString());
+//        System.out.println(newOrder.getMaterialCost().toString());
+//        System.out.println(newOrder.getLaborCost().toString());
+//        System.out.println(newOrder.getTax().toString());
+//        System.out.println(newOrder.getTotal().toString());
+//        System.out.println("done");
 
         return newOrder;
     }
@@ -111,7 +127,7 @@ public class OrderListView {
     public Product getProduct(String productType, ArrayList<Product> allProducts) {
         Product currProduct = new Product(productType);
         for (Product product : allProducts) {
-            if (product.getProductType().toLowerCase().equals(productType)) {
+            if (product.getProductType().toLowerCase().equals(productType.toLowerCase())) {
                 return product;
             }
         }

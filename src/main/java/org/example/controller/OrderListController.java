@@ -10,12 +10,9 @@ import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class OrderListController {
     private OrderListView view;
@@ -78,7 +75,7 @@ public class OrderListController {
     }
 
     public void writeLibrary() {
-        dao.writeLibrary2();
+        dao.writeLibrary();
     }
     // defining method that controls the addition of an order to the orderList
     public void addOrder() throws ParseException, FileNotFoundException {
@@ -91,8 +88,6 @@ public class OrderListController {
 
         // get the order information from the user and return an Order object (view)
         Order newOrder = view.getNewOrderInfo(allProducts, allTaxes);
-
-
         // store the order information in the dao
         dao.addOrder(newOrder);
         // write to library
@@ -119,16 +114,19 @@ public class OrderListController {
 //    }
 
     // defining a method that handles the removal of required Order object from the list
-    public void removeOrder() {
+    public void removeOrder() throws FileNotFoundException {
         view.displayRemoveOrderBanner();
+        loadLibary();
         String orderDate = view.getOrderDate();
         Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
         Order order = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
+        writeLibrary();
         view.displayRemoveResults(); // view informs user if the removal of that order was successful
     }
 
-    public void editOrderInformation() {
+    public void editOrderInformation() throws FileNotFoundException {
         view.displayEditOrderBanner(); // display banner to announce editing of information
+        loadLibary();
         ArrayList<Object> orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required order from user
         String orderDate = (String) orderDetails.get(0);
         Integer orderNumber = (Integer) orderDetails.get(1);
@@ -138,6 +136,7 @@ public class OrderListController {
 //        dao.removeOrder(orderDate, orderNumber); // unedited Order object is removed from list by DAO
 //        view.displayAnOrder(order);
         view.editOrderInformation(order, allProducts, allTaxes);
+        writeLibrary();
 //        dao.addOrder(newOrder.getOrderNumber(), newOrder); // new edited Order is returned and added to the library
         view.displayEditSuccessBanner(order);
     }

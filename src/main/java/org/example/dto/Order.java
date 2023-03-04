@@ -108,7 +108,8 @@ public class Order {
     }
 
     public void setMaterialCost() {
-        this.materialCost = this.area.multiply(this.costPerSquareFoot);
+        BigDecimal val = this.area.multiply(this.costPerSquareFoot);
+        this.materialCost = val;
     }
 
     public BigDecimal getLaborCost() {

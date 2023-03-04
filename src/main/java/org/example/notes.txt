@@ -39,6 +39,7 @@ Extras
 1. Check edit order functionality for abnormalities
     f. display order -- if order date isn't valid, let it loop until a valid date is input
     g. do this loop thing for all places where i have to enter an option in a menu
+    h. Fix duplicate addition to the file
 
 ASK EUGENE --
 1. How to set the costpersquarefoot etc attributes -- how does my view communicate with the ProductListDao?

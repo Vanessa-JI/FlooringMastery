@@ -176,7 +176,7 @@ public class OrderListDaoFileImpl implements OrderListDao {
 //        out.close();
 //    }
 
-    public void writeLibrary2() {
+    public void writeLibrary() {
         try {
             for (Map.Entry<String, HashMap<Integer, Order>> set : allOrders.entrySet()) {
                 String orderDate = set.getKey();
@@ -199,7 +199,7 @@ public class OrderListDaoFileImpl implements OrderListDao {
                     }
                     FileWriter fw = new FileWriter(file, true);
                     BufferedWriter bw = new BufferedWriter(fw);
-                    bw.write(content + orderAsText);
+                    bw.write(content + orderAsText + "\n");
                     bw.close();
                 }
             }
