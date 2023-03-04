@@ -37,7 +37,8 @@ public class OrderListController {
     public void startMainProgram() throws ParseException, FileNotFoundException {
         prodDao.loadLibrary();
         taxDao.loadLibrary();
-        System.out.println("Loaded prodLib");
+        loadLibary();
+//        writeLibrary();
         boolean running = true;
         int selection = 0;
         while (running) {
@@ -58,7 +59,7 @@ public class OrderListController {
                     removeOrder();
                     break;
                 case 5:
-                    io.print("EXPORT ALL DATA");
+                    writeLibrary();
                     break;
                 case 6:
                     io.print("Exiting program...");
@@ -70,12 +71,21 @@ public class OrderListController {
 
         }
         io.print("GOOD BYE");
-    } // End of run method
+    } // End of start method
 
+    public void loadLibary() throws FileNotFoundException {
+        dao.loadLibrary();
+    }
+
+    public void writeLibrary() {
+        dao.writeLibrary2();
+    }
     // defining method that controls the addition of an order to the orderList
-    public void addOrder() throws ParseException {
+    public void addOrder() throws ParseException, FileNotFoundException {
         // display to the user that we're adding an order (view)
         view.displayAddOrderBanner();
+        // load most recent library
+        loadLibary();
         ArrayList<Product> allProducts = prodDao.getAllProducts();
         ArrayList<Tax> allTaxes = taxDao.getAllTaxes();
 
@@ -85,6 +95,8 @@ public class OrderListController {
 
         // store the order information in the dao
         dao.addOrder(newOrder);
+        // write to library
+        writeLibrary();
 
         // display a successful addition or not
         view.createOrderSuccessBanner();

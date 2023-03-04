@@ -14,15 +14,14 @@ Friday
     (e. area must be a positive decimal, minimum order size is 100)
 
 (3. Add in product and tax DTO functionality)
-4. Handle file I/O and associated exceptions
-7. Add lambdas and streams functionality
+(4. Handle file I/O and associated exceptions)
 
 
 Saturday
-4. Fix order number situation -- each day starts off order number count at 0
 6. Add JUnit testing functionality
 6. Spring DI functionality
 10. Implement service layer functionality
+11. Fix exception handling
 
 
 Sunday
@@ -30,6 +29,10 @@ Sunday
 8. Add comments and documentation
 9. Find all methods with 'throws' and add a try-catch
 10. Fix @Override annotations appearing where they shouldn't be
+11. Flowchart
+12. Clean up display output for display orders
+13. Read remit
+7. Add lambdas and streams functionality
 
 
 Extras
@@ -39,3 +42,5 @@ Extras
 
 ASK EUGENE --
 1. How to set the costpersquarefoot etc attributes -- how does my view communicate with the ProductListDao?
+2. Defining multiple exceptons in an exception class
+4. Fix order number situation -- each day starts off order number count at 0

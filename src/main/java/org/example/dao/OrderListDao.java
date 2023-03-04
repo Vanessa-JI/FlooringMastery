@@ -2,6 +2,7 @@ package org.example.dao;
 
 import org.example.dto.Order;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 // All methods defined in this interface involve direct manipulation of the Order DTO
@@ -24,7 +25,6 @@ public interface OrderListDao {
      * ,#####################EDIT THE DOCUMENTATION FROM HERE####################### it will return that student object, otherwise it will
      * return null.
      *
-     * @param orderDate with which student is to be associated
      * @param order to be added to the roster
      * @return the Student object previously associated with the given
      * student id if it exists, null otherwise
@@ -59,4 +59,8 @@ public interface OrderListDao {
     Order removeOrder(String orderDate, Integer orderNumber);
 
     Order exportAllData();
+
+    void loadLibrary() throws FileNotFoundException;
+
+    void writeLibrary2();
 }

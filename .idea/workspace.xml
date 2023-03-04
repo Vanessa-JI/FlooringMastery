@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Implemented functionality to only allow for valid state inputs">
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Added checks for all attributes when editing information">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +38,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2MNiGEjMKItj5klJlBFD4KRv2LU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -139,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677859199386</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Added checks for all attributes when editing information">
+      <created>1677859750326</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677859750326</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -154,14 +163,15 @@
     <MESSAGE value="Implemented functionality to only allow selection of products in the product list" />
     <MESSAGE value="Updated valid product selection to fix crashing after setting tax rate" />
     <MESSAGE value="Implemented functionality to only allow for valid state inputs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented functionality to only allow for valid state inputs" />
+    <MESSAGE value="Added checks for all attributes when editing information" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added checks for all attributes when editing information" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java</url>
-          <line>20</line>
+          <line>22</line>
           <properties class="org.example.dao.OrderListDaoFileImpl" method="getAllOrders">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -177,6 +187,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
           <line>170</line>
           <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java</url>
+          <line>194</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
