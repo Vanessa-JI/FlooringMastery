@@ -28,41 +28,30 @@ public class ServiceLayerFileImpl implements ServiceLayer {
     }
 
     @Override
-    public ArrayList<Order> getAllOrders(String orderDate) {
-        return null;
+    public ArrayList<Order> getAllOrders(String orderDate) throws ParseException, OrderListBadDateException {
+        validateOrderDateInMemory(orderDate);
+        return dao.getAllOrders(orderDate);
     }
 
     @Override
-    public Order getAnOrder(String orderDate, Integer orderNumber) {
-//        if (dao.getAnOrder(orderDate, orderNumber)
-        return null;
+    public Order getAnOrder(String orderDate, Integer orderNumber) throws ParseException, OrderListBadDateException {
+        validateOrderDateInMemory(orderDate);
+        return dao.getAnOrder(orderDate, orderNumber);
     }
 
     @Override
-    public void addOrder(Order order, HashMap<String, HashMap<Integer, Order>> allOrders) {
-
-        HashMap orderList = new HashMap<>();
-        if (allOrders.containsKey(order.getOrderDate())) {
-            orderList = allOrders.get(order.getOrderDate());
-        }
-        orderList.put(order.getOrderNumber(), order);
-        allOrders.put(order.getOrderDate(), orderList);
-
-    }
-
-    @Override
-    public Order editOrder(String orderDate, String customerName) {
-        return null;
+    public void addOrder(Order order) throws ParseException, OrderListBadDateException {
+        dao.addOrder(order);
     }
 
     @Override
     public Order removeOrder(String orderDate, Integer orderNumber) {
-        return null;
+        return dao.removeOrder(orderDate, orderNumber);
     }
 
     @Override
     public Order exportAllData() {
-        return null;
+        return dao.exportAllData();
     }
 
     @Override
@@ -77,7 +66,7 @@ public class ServiceLayerFileImpl implements ServiceLayer {
 
     @Override
     public void loadLibrary() throws FileNotFoundException {
-
+        dao.loadLibrary();
     }
 
     @Override
@@ -87,7 +76,41 @@ public class ServiceLayerFileImpl implements ServiceLayer {
 
     @Override
     public void writeLibrary() {
+        dao.writeLibrary();
+    }
 
+    @Override
+    public void loadProductLibrary() throws FileNotFoundException {
+        prodDao.loadLibrary();
+    }
+
+    @Override
+    public void loadTaxLibrary() throws FileNotFoundException {
+        taxDao.loadLibrary();
+    }
+
+    @Override
+    public ArrayList<Product> getAllProducts() {
+        return prodDao.getAllProducts();
+    }
+
+    @Override
+    public ArrayList<Tax> getAllTaxes() {
+        return taxDao.getAllTaxes();
+    }
+
+    public String validateOrderDateInMemory(String orderDate) throws ParseException, OrderListBadDateException {
+        boolean dateIsValid = false;
+        while (!dateIsValid) {
+            Date futureDate = new SimpleDateFormat("MM/dd/yyyy").parse(orderDate);
+            if (dao.getAllOrders(orderDate) == null) {
+                throw new OrderListBadDateException("Error: no orders exist for the input date.");
+            } else {
+                break;
+            }
+        }
+
+        return orderDate;
     }
 
     public String checkOrderDate(String orderDate) throws ParseException, OrderListBadDateException {

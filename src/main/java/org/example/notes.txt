@@ -1,3 +1,15 @@
+Finishing up
+(11. Fix exception handling)
+8. Add comments and documentation
+(9. Find all methods with 'throws' and add a try-catch)
+11. Flowchart
+(8. Add functionality to ask user if they're sure they want to delete/add an order (check remit))
+9. Organise packages in project tree
+(10. display order -- if order date isn't valid, let it loop until a valid date is input)
+
+
+
+
 (1. Finish adding basic functionality -- i.e. get all the basic menu items working)
 (2. Handle multiple order list functionality)
     (a. View all orders)
@@ -18,27 +30,21 @@ Friday
 
 
 Saturday
-6. Add JUnit testing functionality
-6. Spring DI functionality
-10. Implement service layer functionality
-11. Fix exception handling
+(6. Add JUnit testing functionality)
+(6. Spring DI functionality)
+(10. Implement service layer functionality)
 
 
 Sunday
 (7. Edit the OrderListDao so it includes all methods mentioned in FileImpl)
-8. Add comments and documentation
-9. Find all methods with 'throws' and add a try-catch
 (10. Fix @Override annotations appearing where they shouldn't be)
-11. Flowchart
-12. Clean up display output for display orders
+(12. Clean up display output for display orders)
 (13. Read remit)
-7. Add lambdas and streams functionality
-8. Add functionality to ask user if they're sure they want to delete/add an order (check remit)
+(7. Add lambdas and streams functionality)
 
 
 Extras
 1. Check edit order functionality for abnormalities
-    f. display order -- if order date isn't valid, let it loop until a valid date is input
     g. do this loop thing for all places where i have to enter an option in a menu
     h. Fix duplicate addition to the file
 

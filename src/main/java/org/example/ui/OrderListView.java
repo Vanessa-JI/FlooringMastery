@@ -319,4 +319,32 @@ public class OrderListView {
 
         return order;
     }
+
+    public boolean confirmNewOrder(Order order) {
+
+        String addOrder = io.readString("\nThe details of your new order are shown above. " +
+                "Do you want to confirm and add the order? (Y/N)");
+        if (addOrder.equalsIgnoreCase("y")) {
+            return true;
+        }
+        return false;
+
+    }
+
+    public boolean confirmOrderRemoval(Order order) {
+        String addOrder = io.readString("The details of the order to be removed are shown above. " +
+                "Do you want to confirm and remove the order? (Y/N)");
+        if (addOrder.equalsIgnoreCase("y")) {
+            return true;
+        }
+        return false;
+    }
+
+    public void confirmOrderRemovalFailure() {
+        io.print("\nOrder was not removed.\n");
+    }
+
+    public void confirmOrderAdditionFailure() {
+        io.print("\nOrder was not added.\n");
+    }
 }

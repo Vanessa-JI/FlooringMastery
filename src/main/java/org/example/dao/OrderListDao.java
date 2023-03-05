@@ -37,7 +37,7 @@ public interface OrderListDao {
     void addOrder(Order order);
 
 
-    Order editOrder(String orderDate, String customerName);
+//    Order editOrder(String orderDate, String customerName);
 
 
 

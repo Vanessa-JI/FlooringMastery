@@ -31,34 +31,34 @@ public class OrderListDaoFileImpl implements OrderListDao {
     @Override
     public ArrayList<Order> getAllOrders(String orderDate) {
         HashMap orderForDate = allOrders.get(orderDate);
-        return new ArrayList<>(orderForDate.values());
+        if (allOrders.containsKey(orderForDate)) {
+            return new ArrayList<>(orderForDate.values());
+        } else
+            return null;
     }
 
     @Override
     public Order getAnOrder(String orderDate, Integer orderNumber) {
-        if (allOrders.get(orderDate) != null && allOrders.get(orderDate).get(orderNumber) != null) {
+//        if (allOrders.get(orderDate) != null && allOrders.get(orderDate).get(orderNumber) != null) {
             return allOrders.get(orderDate).get(orderNumber);
-        } else
-            return null;
+//        } else
+//            return null;
     }
 
     @Override
     public void addOrder(Order order) {
         HashMap orderList = new HashMap<>();
         if (allOrders.containsKey(order.getOrderDate())) {
-//            HashMap<Integer, Order> orderList = allOrders.stream().filter((p) -> p.get(order.getOrderDate));
-//            List<Person> overEighteen = people.stream().filter((p) -> p.getAge() >= 18).collect(Collectors.toList());
-
             orderList = allOrders.get(order.getOrderDate());
         }
         orderList.put(order.getOrderNumber(), order);
         allOrders.put(order.getOrderDate(), orderList);
     }
 
-    @Override
-    public Order editOrder(String orderDate, String customerName) {
-        return null;
-    }
+//    @Override
+//    public Order editOrder(String orderDate, String customerName) {
+//        return null;
+//    }
 
     @Override
     public Order removeOrder(String orderDate, Integer orderNumber) {
@@ -204,7 +204,7 @@ public class OrderListDaoFileImpl implements OrderListDao {
                     String orderAsText = marshallOrder(currOrder);
                     String content = "";
                     // see if a file with the orderDate exists in the Orders folder
-                    File file = new File("Orders/Order_" + orderDate + ".txt");
+                    File file = new File("Orders/Orders_" + orderDate + ".txt");
 //                    File file  =  new File("Orders_Order");
                     if (!file.exists()) {
                         file.createNewFile();

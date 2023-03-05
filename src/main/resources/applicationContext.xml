@@ -37,17 +37,20 @@
     <bean id="taxDao"
           class="org.example.dao.TaxListDaoFileImpl"/>
 
-<!--    <bean id="serviceLayer"-->
-<!--          class="com.sg.classroster.service.ClassRosterServiceLayerImpl">-->
-<!--        <constructor-arg ref="classRosterDao"/>-->
-<!--        <constructor-arg ref="auditDao"/>-->
-<!--    </bean>-->
-
-    <bean id="controller"
-          class="org.example.controller.OrderListController">
+    <bean id="serviceLayer"
+          class="org.example.service.ServiceLayerFileImpl">
         <constructor-arg ref="orderListDao"/>
         <constructor-arg ref="productDao"/>
         <constructor-arg ref="taxDao"/>
+<!--        <constructor-arg ref="auditDao"/>-->
+    </bean>
+
+    <bean id="controller"
+          class="org.example.controller.OrderListController">
+        <constructor-arg ref="serviceLayer"/>
+<!--        <constructor-arg ref="orderListDao"/>-->
+<!--        <constructor-arg ref="productDao"/>-->
+<!--        <constructor-arg ref="taxDao"/>-->
         <constructor-arg ref="view"/>
     </bean>
 
