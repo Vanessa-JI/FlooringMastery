@@ -10,15 +10,9 @@ import java.util.*;
 public class OrderListDaoFileImpl implements OrderListDao {
 
     // defining a private class attribute to hold all orders in a HashMap object
-//    private HashMap<Integer, Order> orderList = new HashMap<>();
-
-    // RIGHT NOW, WE'RE ASSUMING WE HAVE ONE ORDER LIST FOR ONE DATE -- WILL EXPAND FUNCTIONALITY TO BUILD MULTIPLE ORDER LISTS FOR MULTIPLE DATES
-    // DO THIS BEFORE TACKLING FILE I/O
     private static HashMap<String, HashMap<Integer, Order>> allOrders = new HashMap<>();
-//    public static final String ORDER_FOLDER = "Orders";
     public final String ORDER_FOLDER;
     public static final String DELIMITER = ",";
-
     public OrderListDaoFileImpl() {
         ORDER_FOLDER = "Orders";
     }
@@ -30,35 +24,28 @@ public class OrderListDaoFileImpl implements OrderListDao {
 
     @Override
     public ArrayList<Order> getAllOrders(String orderDate) {
-        HashMap orderForDate = allOrders.get(orderDate);
-        if (allOrders.containsKey(orderForDate)) {
+        HashMap orderForDate = allOrders.get(orderDate); // get a hashmap of all orders for the given day
+        if (orderForDate != null) {
             return new ArrayList<>(orderForDate.values());
-        } else
-            return null;
+        } else {
+            return null; // return null if no orders exist for this day
+        }
     }
 
     @Override
     public Order getAnOrder(String orderDate, Integer orderNumber) {
-//        if (allOrders.get(orderDate) != null && allOrders.get(orderDate).get(orderNumber) != null) {
-            return allOrders.get(orderDate).get(orderNumber);
-//        } else
-//            return null;
+            return allOrders.get(orderDate).get(orderNumber); // return an order given the order date and number
     }
 
     @Override
     public void addOrder(Order order) {
         HashMap orderList = new HashMap<>();
-        if (allOrders.containsKey(order.getOrderDate())) {
+        if (allOrders.containsKey(order.getOrderDate())) { // add order to pre-existing hashmap if available
             orderList = allOrders.get(order.getOrderDate());
         }
-        orderList.put(order.getOrderNumber(), order);
+        orderList.put(order.getOrderNumber(), order); // otherwise add order to a new empty hashmap
         allOrders.put(order.getOrderDate(), orderList);
     }
-
-//    @Override
-//    public Order editOrder(String orderDate, String customerName) {
-//        return null;
-//    }
 
     @Override
     public Order removeOrder(String orderDate, Integer orderNumber) {
@@ -71,24 +58,21 @@ public class OrderListDaoFileImpl implements OrderListDao {
     }
 
     public String getDate(String fileName) {
-        String[] fileNameArr = fileName.split("_");
+        String[] fileNameArr = fileName.split("_"); // get the date from the text file
         String orderDate = fileNameArr[1];
-        String month = orderDate.substring(0, 2);
+        String month = orderDate.substring(0, 2); // split the order date into day, month, year
         String day = orderDate.substring(2, 4);
         String year = orderDate.substring(4);
-        StringJoiner joiner = new StringJoiner("/");
+        StringJoiner joiner = new StringJoiner("/"); // join components of date together with relevant delimiter
         joiner.add(month).add(day).add(year);
-        return joiner.toString();
+        return joiner.toString(); // return joined string of complete date
     }
 
-
-    // method to perform DVD object information unmarshalling
     private Order unmarshallOrder(String orderAsText, String fileDate) {
         // split the line read from text file into tokens (DVD object attributes)
         String[] orderTokens = orderAsText.split(DELIMITER);
 
         // generate a new DVD object based on the title retrieved from the text file
-        String orderNumber = orderTokens[0];
         Order orderFromFile = new Order();
 
         // set all other instance attributes accordingly and return the DVD object created
@@ -108,20 +92,13 @@ public class OrderListDaoFileImpl implements OrderListDao {
         return orderFromFile;
     }
 
-    // defining a method to read the library file from comma-separated text file into local memory
-    // exception is thrown if there is an error reading the text file
     public void loadLibrary() throws FileNotFoundException {
-
         // define a new scanner object to read text file line by line
         Scanner scanner;
-
-        // try-catch block handles the exception and prints out an error message if the text file cannot be read
-//        try {
 
         // recursively loop through the orders directory
         File directory = new File(ORDER_FOLDER);
         File[] files = directory.listFiles();
-
         for (File file : files) {
             // create an array list for all orders of this order date
             HashMap<Integer, Order> ordersForThisDate = new HashMap<>();
@@ -136,7 +113,7 @@ public class OrderListDaoFileImpl implements OrderListDao {
                 while (scanner.hasNextLine()) {
                     currentLine = scanner.nextLine();
                     currentOrder = unmarshallOrder(currentLine, orderDate);
-                    ordersForThisDate.put(currentOrder.getOrderNumber(), currentOrder); // add this DVD object to the library of DVDs
+                    ordersForThisDate.put(currentOrder.getOrderNumber(), currentOrder); // keep adding orders from the same date to a hashmap
                 }
                 scanner.close();
             }
@@ -146,7 +123,6 @@ public class OrderListDaoFileImpl implements OrderListDao {
         }
     }
 
-    // defining a function to perform data marshalling
     private String marshallOrder(Order anOrder) {
         // Turning each line of text in the input file into a DVD object
         String orderAsText = anOrder.getOrderNumber().toString() + DELIMITER;
@@ -165,31 +141,6 @@ public class OrderListDaoFileImpl implements OrderListDao {
         return orderAsText; // return a String object that can be saved in a text file
     }
 
-
-//    // Writes all DVDs in the libraries at the end of program execution to a LIBRARY_FILE.
-//    // throws ClassRosterDaoException if an error occurs writing to the file
-//    public void writeLibrary() {
-//        PrintWriter out; // defining a PrintWriter object to save each line of text to
-//
-//        // try-catch block handles an exception if DVD data cannot be saved
-//        try {
-//            out = new PrintWriter(new FileWriter(ORDER_FOLDER));
-//        } catch (IOException e) {
-//            throw new DVDLibraryDaoException(
-//                    "Could not save DVD data.", e);
-//        }
-//
-//        // Write out the DVD objects to the library file
-//        String dvdAsText;
-//        ArrayList<DVD> dvdList = this.getAllDVDs();
-//        for (DVD currentDVD : dvdList) {
-//            dvdAsText = marshallOrder(currentDVD);
-//            out.println(dvdAsText);
-//            out.flush(); // force line to be written to file
-//        }
-//        out.close();
-//    }
-
     public void writeLibrary() {
         try {
             for (Map.Entry<String, HashMap<Integer, Order>> set : allOrders.entrySet()) {
@@ -197,21 +148,19 @@ public class OrderListDaoFileImpl implements OrderListDao {
                 String[] arr = orderDate.split("/");
                 orderDate = arr[0] + arr[1] + arr[2];
 
-                for (Map.Entry<Integer, Order> innerSet : set.getValue().entrySet()) {
-                    Integer orderNumber = innerSet.getKey();
+                for (Map.Entry<Integer, Order> innerSet : set.getValue().entrySet()) { // get each hashmap in the hashmap of hashmaps
                     Order currOrder = innerSet.getValue();
                     // marshall order
                     String orderAsText = marshallOrder(currOrder);
                     String content = "";
                     // see if a file with the orderDate exists in the Orders folder
                     File file = new File("Orders/Orders_" + orderDate + ".txt");
-//                    File file  =  new File("Orders_Order");
                     if (!file.exists()) {
                         file.createNewFile();
                         content += "OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot," +
-                                "LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total\n";
+                                "LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total\n"; // write the relevant information to the text file
                     }
-                    FileWriter fw = new FileWriter(file, true);
+                    FileWriter fw = new FileWriter(file, true); // to ensure no overwriting of the text file, append is set to true
                     BufferedWriter bw = new BufferedWriter(fw);
                     bw.write(content + orderAsText + "\n");
                     bw.close();

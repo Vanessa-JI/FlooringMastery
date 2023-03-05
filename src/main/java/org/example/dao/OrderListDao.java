@@ -1,7 +1,6 @@
 package org.example.dao;
 
 import org.example.dto.Order;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -18,12 +17,12 @@ public interface OrderListDao {
 
     /**
      * Returns the order object associated with the given order date and number.
-     * Returns null if no such student exists
+     * Returns null if no such object exists
      *
      * @param orderDate date of the order to retrieve
      * @param orderNumber order number of the order to retrieve
-     * @return the order object associated with the given student id,
-     * null if no such student exists
+     * @return the order object associated with the given order date and number,
+     * null if no such order exists
      */
     Order getAnOrder(String orderDate, Integer orderNumber);
 
@@ -33,24 +32,8 @@ public interface OrderListDao {
      * an error is thrown, otherwise, the order is added to the orderList.
      * @param order to be added to the roster
      */
-
     void addOrder(Order order);
 
-
-//    Order editOrder(String orderDate, String customerName);
-
-
-
-
-//    /**
-//     * Returns the student object associated with the given student id.
-//     * Returns null if no such student exists
-//     *
-//     * @param studentId ID of the student to retrieve
-//     * @return the Student object associated with the given student id,
-//     * null if no such student exists
-//     */
-//    Student getStudent(String studentId);
 
     /**
      * Removes from the order list the order associated with the given order date and order number.

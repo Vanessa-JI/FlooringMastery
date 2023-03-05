@@ -16,16 +16,16 @@ public class TaxListDaoFileImpl implements TaxListDao {
     public static final String DELIMITER = ",";
     private HashMap<String, Tax> taxes = new HashMap<>();
 
-    // method to perform DVD object information unmarshalling
+    // method to perform tax object information unmarshalling
     private Tax unmarshallTaxes (String taxAsText) {
-        // split the line read from text file into tokens (DVD object attributes)
+        // split the line read from text file into tokens (tax object attributes)
         String[] taxTokens = taxAsText.split(DELIMITER);
 
-        // generate a new DVD object based on the title retrieved from the text file
+        // generate a new tax object based on the state retrieved from the text file
         String taxName = taxTokens[0];
         Tax taxFromFile = new Tax(taxName);
 
-        // set all other instance attributes accordingly and return the DVD object created
+        // set all other instance attributes accordingly and return the tax object created
         taxFromFile.setState(taxTokens[0]);
         taxFromFile.setStateName(taxTokens[1]);
         taxFromFile.setTaxRate(Double.parseDouble(taxTokens[2]));
@@ -39,23 +39,17 @@ public class TaxListDaoFileImpl implements TaxListDao {
 
         // define a new scanner object to read text file line by line
         Scanner scanner;
-
-        // try-catch block handles the exception and prints out an error message if the text file cannot be read
-//        try {
         scanner = new Scanner(new BufferedReader(new FileReader(TAXES_FILE)));
-//        } catch (FileNotFoundException e) {
-//            throw new DVDLibraryDaoException("Could not load DVD Library file.", e);
-//        }
         scanner.nextLine();
         String currentLine;
         Tax currentTax;
 
-        // read the text file line by line until the end and unmarshall each DVD object from the information in
+        // read the text file line by line until the end and unmarshall each tax object from the information in
         // the current line from the text file
         while (scanner.hasNextLine()) {
             currentLine = scanner.nextLine();
             currentTax = unmarshallTaxes(currentLine);
-            taxes.put(currentTax.getState(), currentTax); // add this DVD object to the library of DVDs
+            taxes.put(currentTax.getState(), currentTax); // add this tax object to the library of taxes
         }
         scanner.close();
     }

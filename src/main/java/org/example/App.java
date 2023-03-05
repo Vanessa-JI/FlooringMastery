@@ -20,7 +20,7 @@ public class App {
 //        OrderListView view = new OrderListView(myIo);
 //        OrderListDao dao = new OrderListDaoFileImpl();
 //        ProductListDao prodDao = new ProductListDaoFileImpl();
-//        TaxListDao taxDao = new TaxListDaoFileImpl(); //    WHY DO WE SAY NEW FILEIMPL BUT DECLARE AS A DAO OBJECT
+//        TaxListDao taxDao = new TaxListDaoFileImpl();
 //        OrderListController controller = new OrderListController(dao, prodDao, taxDao, view);
 //        controller.startMainProgram();
 

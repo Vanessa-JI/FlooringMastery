@@ -25,15 +25,14 @@ public class OrderListController {
     }
 
 
-    // run method kicks off execution of entire program
+    /**
+     * Start method kicks off execution of entire program
+      */
     public void startMainProgram() throws ParseException, FileNotFoundException, OrderListBadDateException {
         loadLibary();
         boolean running = true;
-        int selection = 0;
-        while (running) {
-
-            int menuSelection = view.printMenuAndGetSelection();
-
+        while (running) { // menu options loop indefinitely until the user exits
+            int menuSelection = view.printMenuAndGetSelection(); // view handles user input in main menu
             switch (menuSelection) {
                 case 1:
                     viewAllOrders();
@@ -57,46 +56,53 @@ public class OrderListController {
                 default:
                     io.print("Unknown command. Please select from the available options.");
             }
-
         }
-        io.print("GOOD BYE");
+        io.print("Goodbye!");
     } // End of start method
 
+    /**
+     * loadLibrary method loads the product library, tax library, and all orders from orders folder.
+     * @throws FileNotFoundException if any text files cannot be found and read
+     */
     public void loadLibary() throws FileNotFoundException {
         service.loadProductLibrary();
         service.loadTaxLibrary();
         service.loadLibrary();
     }
 
+    /**
+     * writeLibrary method writes entire order directory in the program to text files organised by order date
+     */
     public void writeLibrary() {
         service.writeLibrary();
     }
-    // defining method that controls the addition of an order to the orderList
-    public void addOrder() throws ParseException, FileNotFoundException, OrderListBadDateException {
-        // display to the user that we're adding an order (view)
+
+    /**
+     * addOrder method adds a newly input order to the order list stored in memory
+     * @throws ParseException if the order date input by the user is not input in the correct format
+     * @throws OrderListBadDateException if the input date from the user is not in the future
+     */
+    public void addOrder() throws ParseException, OrderListBadDateException {
         view.displayAddOrderBanner();
-        // load most recent library
-        loadLibary();
-        ArrayList<Product> allProducts = service.getAllProducts();
+        ArrayList<Product> allProducts = service.getAllProducts(); // get the list of available products and tax states
         ArrayList<Tax> allTaxes = service.getAllTaxes();
-
-        // get the order information from the user and return an Order object (view)
-        Order newOrder = view.getNewOrderInfo(allProducts, allTaxes);
+        Order newOrder = view.getNewOrderInfo(allProducts, allTaxes); // get the order information from the user and return an Order object (view)
         view.displayAnOrder(newOrder);
-        boolean confirmation = view.confirmNewOrder(newOrder);
+        boolean confirmation = view.confirmNewOrder(newOrder); // returns true if the user confirms to add a new order
         if (confirmation) {
-            // store the order information in the dao
-            service.addOrder(newOrder);
-            // write to library
+            service.addOrder(newOrder); // store the order information in the dao
             writeLibrary();
-
-            // display a successful addition or not
-            view.createOrderSuccessBanner();
+            view.createOrderSuccessBanner(); // display success if user chose to add order
         } else {
-            view.confirmOrderAdditionFailure();
+            view.confirmOrderAdditionFailure(); // display failure if user chose not to add order
         }
     }
 
+    /**
+     * viewAllOrders method allows the user to view all the orders that have been scheduled for a given day.
+     * @throws ParseException if the order date input by the user is not input in the correct format
+     * @throws OrderListBadDateException if the input date from the user is not in the future
+     */
     public void viewAllOrders() throws ParseException, OrderListBadDateException {
         view.displayAllOrdersBanner();
         String orderDate = view.getOrderDate();
@@ -104,14 +110,18 @@ public class OrderListController {
         view.displayAllOrders(allOrders);
     }
 
-    // defining a method that handles the removal of required Order object from the list
-    public void removeOrder() throws FileNotFoundException, ParseException, OrderListBadDateException {
+    /**
+     * removeOrder method removes a required order object from the order list stored in local memory then writes
+     * a new updated list to the file
+     * @throws ParseException
+     * @throws OrderListBadDateException
+     */
+    public void removeOrder() throws ParseException, OrderListBadDateException {
         view.displayRemoveOrderBanner();
-        loadLibary();
         String orderDate = view.getOrderDate();
         Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
         boolean confirmation = view.confirmOrderRemoval(service.getAnOrder(orderDate, orderNumber));
-        if (confirmation) {
+        if (confirmation) { // if user selects to remove a given order, it is removed
             service.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
             writeLibrary();
             view.displayRemoveResults(); // view informs user if the removal of that order was successful
@@ -120,19 +130,21 @@ public class OrderListController {
         }
     }
 
-    public void editOrderInformation() throws FileNotFoundException, ParseException, OrderListBadDateException {
+    /**
+     * editOrderInformation allows the user to edit the information of an existing order as required by the user
+     * @throws ParseException
+     * @throws OrderListBadDateException
+     */
+    public void editOrderInformation() throws ParseException, OrderListBadDateException {
         view.displayEditOrderBanner(); // display banner to announce editing of information
-        loadLibary();
         ArrayList<Object> orderDetails = view.getOrderNumberAndDate(); // view retrieves the order number and date of required order from user
         String orderDate = (String) orderDetails.get(0);
         Integer orderNumber = (Integer) orderDetails.get(1);
         Order order = service.getAnOrder(orderDate, orderNumber); // DAO retrieves order object using orderDetails as a search key
         ArrayList<Product> allProducts = service.getAllProducts();
         ArrayList<Tax> allTaxes = service.getAllTaxes();
-//        dao.removeOrder(orderDate, orderNumber); // unedited Order object is removed from list by DAO
-//        view.displayAnOrder(order);
         view.editOrderInformation(order, allProducts, allTaxes);
-        writeLibrary();
+        writeLibrary(); // save updated order list to text file
         view.displayEditSuccessBanner(order);
     }
 

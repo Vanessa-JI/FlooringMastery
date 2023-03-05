@@ -100,16 +100,9 @@ public class ServiceLayerFileImpl implements ServiceLayer {
     }
 
     public String validateOrderDateInMemory(String orderDate) throws ParseException, OrderListBadDateException {
-        boolean dateIsValid = false;
-        while (!dateIsValid) {
-            Date futureDate = new SimpleDateFormat("MM/dd/yyyy").parse(orderDate);
             if (dao.getAllOrders(orderDate) == null) {
                 throw new OrderListBadDateException("Error: no orders exist for the input date.");
-            } else {
-                break;
             }
-        }
-
         return orderDate;
     }
 
@@ -133,9 +126,6 @@ public class ServiceLayerFileImpl implements ServiceLayer {
             if (customerName.isBlank()) {
                 throw new OrderListInvalidNameException("Error: enter a valid name. The name must contain " +
                         "only alphanumeric characters, commas, and periods.");
-//                customerName = io.readString("Please enter a valid name. The name must contain " +
-//                        "only alphanumeric characters, commas, and periods.");
-//                continue;
             }
             // defining conditions for a valid name
             for (int i = 0; i < customerName.length(); i++) {
@@ -143,7 +133,6 @@ public class ServiceLayerFileImpl implements ServiceLayer {
                 if (!(c >= 'a' && c <= 'z') && !(c >= 'A' && c <= 'Z') && !(Character.isDigit(c)) && (c != '.') && (c != ',')) {
                     throw new OrderListInvalidNameException("Error: enter a valid name. The name must contain " +
                             "only alphanumeric characters, commas, and periods.");
-//                    customerName = io.readString("Please enter a valid name. The name must contain only alphanumeric characters, commas, and periods.");
                 }
             }
             nameIsValid = true;
@@ -167,7 +156,7 @@ public class ServiceLayerFileImpl implements ServiceLayer {
         double laborCostPerSquareFoot;
         for (Product product : allProducts) {
             productNames.add(product.getProductType().toLowerCase());
-        } // COULD FIGURE OUT A BETTER PLACE TO PUT THIS CODE
+        }
         boolean productIsValid = false;
         while (!productIsValid) {
             if (productNames.contains(productType.toLowerCase())) {
@@ -180,7 +169,6 @@ public class ServiceLayerFileImpl implements ServiceLayer {
                 break;
             } else {
                 throw new OrderListInvalidProductSelectionException("Error: enter a product shown in the list above.");
-//                productType = io.readString("Please enter a product shown in the list above.");
             }
         }
         return productType.substring(0, 1).toUpperCase() + productType.substring(1);
@@ -194,8 +182,7 @@ public class ServiceLayerFileImpl implements ServiceLayer {
             }
             throw new OrderListInvalidAreaException("Error: enter a valid value for area. The area must be " +
                     "a positive number of minimum value 100sq.ft");
-//            area = io.readString("Please enter a valid value for area. The area must be a positive number of " +
-//                    "minimum value 100sq.ft");
+
         }
         return area;
     }
@@ -218,7 +205,7 @@ public class ServiceLayerFileImpl implements ServiceLayer {
         for (Tax tax : allTaxes) {
             taxNames.add(tax.getState().toLowerCase());
             taxNames.add(tax.getState().toLowerCase());
-        } // COULD FIGURE OUT A BETTER PLACE TO PUT THIS CODE
+        }
         double taxRate;
         boolean stateIsValid = false;
         while (!stateIsValid) {
@@ -229,7 +216,6 @@ public class ServiceLayerFileImpl implements ServiceLayer {
                 return state;
             }
             throw new OrderListInvalidStateException("Error: please try another state");
-//            state = io.readString("Please try another state.");
         }
         return state;
     }
