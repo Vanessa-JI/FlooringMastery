@@ -15,9 +15,18 @@ public class OrderListDaoFileImpl implements OrderListDao {
     // RIGHT NOW, WE'RE ASSUMING WE HAVE ONE ORDER LIST FOR ONE DATE -- WILL EXPAND FUNCTIONALITY TO BUILD MULTIPLE ORDER LISTS FOR MULTIPLE DATES
     // DO THIS BEFORE TACKLING FILE I/O
     private static HashMap<String, HashMap<Integer, Order>> allOrders = new HashMap<>();
-    public static final String ORDER_FOLDER = "Orders";
+//    public static final String ORDER_FOLDER = "Orders";
+    public final String ORDER_FOLDER;
     public static final String DELIMITER = ",";
 
+    public OrderListDaoFileImpl() {
+        ORDER_FOLDER = "Orders";
+    }
+
+    // second constructor allows user to select a different folder for orders
+    public OrderListDaoFileImpl(String orderFolder) {
+        ORDER_FOLDER = orderFolder;
+    }
 
     @Override
     public ArrayList<Order> getAllOrders(String orderDate) {
@@ -27,13 +36,19 @@ public class OrderListDaoFileImpl implements OrderListDao {
 
     @Override
     public Order getAnOrder(String orderDate, Integer orderNumber) {
-        return allOrders.get(orderDate).get(orderNumber);
+        if (allOrders.get(orderDate) != null && allOrders.get(orderDate).get(orderNumber) != null) {
+            return allOrders.get(orderDate).get(orderNumber);
+        } else
+            return null;
     }
 
     @Override
     public void addOrder(Order order) {
         HashMap orderList = new HashMap<>();
         if (allOrders.containsKey(order.getOrderDate())) {
+//            HashMap<Integer, Order> orderList = allOrders.stream().filter((p) -> p.get(order.getOrderDate));
+//            List<Person> overEighteen = people.stream().filter((p) -> p.getAge() >= 18).collect(Collectors.toList());
+
             orderList = allOrders.get(order.getOrderDate());
         }
         orderList.put(order.getOrderNumber(), order);

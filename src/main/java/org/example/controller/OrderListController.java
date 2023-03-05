@@ -9,7 +9,6 @@ import org.example.dto.Tax;
 import org.example.ui.OrderListView;
 import org.example.ui.UserIO;
 import org.example.ui.UserIOConsoleImpl;
-
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -119,7 +118,7 @@ public class OrderListController {
         loadLibary();
         String orderDate = view.getOrderDate();
         Integer orderNumber = view.getOrderNumber(); // view retrieves orderNumber of required order
-        Order order = dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
+        dao.removeOrder(orderDate, orderNumber); // DAO removes required Order object from library
         writeLibrary();
         view.displayRemoveResults(); // view informs user if the removal of that order was successful
     }

@@ -1,6 +1,7 @@
 package org.example.dto;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 // DTO class -- contains only getters and setters
 // Used to move data from one tier to another in applications
@@ -134,5 +135,38 @@ public class Order {
 
     public void setTotal() {
         this.total = this.materialCost.add(this.laborCost).add(this.tax);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return Objects.equals(getOrderDate(), order.getOrderDate()) && Objects.equals(getOrderNumber(), order.getOrderNumber()) && Objects.equals(getCustomerName(), order.getCustomerName()) && Objects.equals(getState(), order.getState()) && Objects.equals(getTaxRate(), order.getTaxRate()) && Objects.equals(getProductType(), order.getProductType()) && Objects.equals(getArea(), order.getArea()) && Objects.equals(getCostPerSquareFoot(), order.getCostPerSquareFoot()) && Objects.equals(getLaborCostPerSquareFoot(), order.getLaborCostPerSquareFoot()) && Objects.equals(getMaterialCost(), order.getMaterialCost()) && Objects.equals(getLaborCost(), order.getLaborCost()) && Objects.equals(getTax(), order.getTax()) && Objects.equals(getTotal(), order.getTotal());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getOrderDate(), getOrderNumber(), getCustomerName(), getState(), getTaxRate(), getProductType(), getArea(), getCostPerSquareFoot(), getLaborCostPerSquareFoot(), getMaterialCost(), getLaborCost(), getTax(), getTotal());
+    }
+
+    // overriding toString method to make visualisation of object parameters easier
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderDate='" + orderDate + '\'' +
+                ", orderNumber=" + orderNumber +
+                ", customerName='" + customerName + '\'' +
+                ", state='" + state + '\'' +
+                ", taxRate=" + taxRate +
+                ", productType='" + productType + '\'' +
+                ", area=" + area +
+                ", costPerSquareFoot=" + costPerSquareFoot +
+                ", laborCostPerSquareFoot=" + laborCostPerSquareFoot +
+                ", materialCost=" + materialCost +
+                ", laborCost=" + laborCost +
+                ", tax=" + tax +
+                ", total=" + total +
+                '}';
     }
 }

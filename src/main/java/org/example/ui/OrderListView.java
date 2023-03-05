@@ -9,6 +9,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class OrderListView {
 
@@ -65,11 +67,7 @@ public class OrderListView {
         newOrder.setProductType(productType);
         newOrder.setArea(new BigDecimal(area));
         Product currProduct = getProduct(productType, allProducts);
-//        System.out.println(currProduct.getProductType());
-//        System.out.println(getProduct(productType, allProducts).toString());
-//        System.out.println(getProduct(productType, allProducts).getProductType());
-//        System.out.println(getProduct(productType, allProducts).getCostPerSquareFoot());
-//        System.out.println(new BigDecimal(getProduct(productType, allProducts).getCostPerSquareFoot()).toString());
+
         newOrder.setCostPerSquareFoot(new BigDecimal(getProduct(productType, allProducts).getCostPerSquareFoot()));
         newOrder.setMaterialCost();
         newOrder.setLaborCostPerSquareFoot(new BigDecimal(getProduct(productType, allProducts).getLaborCostPerSquareFoot()));
@@ -77,13 +75,6 @@ public class OrderListView {
         newOrder.setTaxRate(new BigDecimal(getTax(state, allTaxes).getTaxRate()));
         newOrder.setTax();
         newOrder.setTotal();
-//        System.out.println(newOrder.getCostPerSquareFoot().toString());
-//        System.out.println(newOrder.getLaborCostPerSquareFoot().toString());
-//        System.out.println(newOrder.getMaterialCost().toString());
-//        System.out.println(newOrder.getLaborCost().toString());
-//        System.out.println(newOrder.getTax().toString());
-//        System.out.println(newOrder.getTotal().toString());
-//        System.out.println("done");
 
         return newOrder;
     }
@@ -129,13 +120,20 @@ public class OrderListView {
 
     public Product getProduct(String productType, ArrayList<Product> allProducts) {
         Product currProduct = new Product(productType);
-        for (Product product : allProducts) {
-            if (product.getProductType().toLowerCase().equals(productType.toLowerCase())) {
-                return product;
-            }
-        }
-        return currProduct;
+
+        // using lambdas and streams instead of a for loop
+        List<Product> relevantProd = allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase(productType)).collect(Collectors.toList());
+        return relevantProd.get(0);
     }
+
+//        for (Product product : allProducts) {
+//
+//            if (product.getProductType().toLowerCase().equals(productType.toLowerCase())) {
+//                return product;
+//            }
+//        }
+//        return currProduct;
+//    }
 
     public String checkProductType(String productType, ArrayList<Product> allProducts, Order newOrder) {
         ArrayList<String> productNames = new ArrayList<>();
@@ -175,13 +173,17 @@ public class OrderListView {
 
     public Tax getTax(String state, ArrayList<Tax> allTaxes) {
         Tax currTax = new Tax(state);
-        for (Tax tax : allTaxes) {
-            if ( tax.getStateName().toLowerCase().equals(state.toLowerCase()) ||
-                    tax.getState().toLowerCase().equals(state.toLowerCase()) ){
-                return tax;
-            }
-        }
-        return currTax;
+        // using lambdas and streams instead of a for loop
+        List<Tax> relevantTax = allTaxes.stream().filter((p) -> p.getState().equalsIgnoreCase(state) || p.getStateName().equalsIgnoreCase(state)).collect(Collectors.toList());
+        return relevantTax.get(0);
+
+//        for (Tax tax : allTaxes) {
+//            if ( tax.getStateName().toLowerCase().equals(state.toLowerCase()) ||
+//                    tax.getState().toLowerCase().equals(state.toLowerCase()) ){
+//                return tax;
+//            }
+//        }
+//        return currTax;
     }
 
     public String checkState(String state, ArrayList<Tax> allTaxes, Order newOrder) {

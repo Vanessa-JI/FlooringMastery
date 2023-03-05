@@ -33,6 +33,7 @@ Sunday
 12. Clean up display output for display orders
 (13. Read remit)
 7. Add lambdas and streams functionality
+8. Add functionality to ask user if they're sure they want to delete/add an order (check remit)
 
 
 Extras

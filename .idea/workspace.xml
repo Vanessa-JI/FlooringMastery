@@ -4,19 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Written service layer code but not fully implemented">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/OrderListDaoFileImplTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/applicationContext.xml" afterDir="false" />
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Spring DI fully implemented (some errors in xml file but not affecting app running)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dto/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dto/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayerFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayerFileImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/UserIOConsoleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/UserIOConsoleImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/OrderListDaoFileImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/OrderListDaoFileImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +65,22 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.example.service" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="OrderListDaoFileImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ClassRoster" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="OrderListDaoFileImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.OrderListDaoFileImplTest" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -177,7 +189,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677971118276</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Just before adding unit tests">
+      <created>1678020792675</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1678020792675</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Spring DI fully implemented (some errors in xml file but not affecting app running)">
+      <created>1678020849786</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1678020849786</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -195,31 +221,30 @@
     <MESSAGE value="Added checks for all attributes when editing information" />
     <MESSAGE value="Added input file and export all data functionality" />
     <MESSAGE value="Written service layer code but not fully implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="Written service layer code but not fully implemented" />
+    <MESSAGE value="Just before adding unit tests" />
+    <MESSAGE value="Spring DI fully implemented (some errors in xml file but not affecting app running)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Spring DI fully implemented (some errors in xml file but not affecting app running)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="30" />
+          <line>125</line>
+          <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>72</line>
-          <option name="timeStamp" value="31" />
+          <line>176</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>68</line>
-          <option name="timeStamp" value="32" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StringIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="37" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

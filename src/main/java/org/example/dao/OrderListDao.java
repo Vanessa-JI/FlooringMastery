@@ -16,21 +16,26 @@ public interface OrderListDao {
      */
     ArrayList<Order> getAllOrders(String orderDate);
 
+    /**
+     * Returns the order object associated with the given order date and number.
+     * Returns null if no such student exists
+     *
+     * @param orderDate date of the order to retrieve
+     * @param orderNumber order number of the order to retrieve
+     * @return the order object associated with the given student id,
+     * null if no such student exists
+     */
     Order getAnOrder(String orderDate, Integer orderNumber);
 
     /**
      * Adds the given Order object to the inventory and associates it with the given
-     * orderDate. If there is already an order associated with the given
-     * orderDate and customer name,
-     * ,#####################EDIT THE DOCUMENTATION FROM HERE####################### it will return that student object, otherwise it will
-     * return null.
-     *
+     * orderDate. If an invalid order date/customer name/state/product/area is input,
+     * an error is thrown, otherwise, the order is added to the orderList.
      * @param order to be added to the roster
-     * @return the Student object previously associated with the given
-     * student id if it exists, null otherwise
      */
 
     void addOrder(Order order);
+
 
     Order editOrder(String orderDate, String customerName);
 
@@ -48,13 +53,14 @@ public interface OrderListDao {
 //    Student getStudent(String studentId);
 
     /**
-     * Removes from the roster the student associated with the given id.
-     * Returns the student object that is being removed or null if
-     * there is no student associated with the given id
+     * Removes from the order list the order associated with the given order date and order number.
+     * Returns the order object that is being removed or null if
+     * there is no order associated with the given id
      *
-     * @param orderDate id of student to be removed
-     * @return Student object that was removed or null if no student
-     * was associated with the given student id
+     * @param orderDate date of order to be removed
+     * @param orderNumber number of order to be removed
+     * @return Order object that was removed or null if no order
+     * was associated with the given order date and number
      */
     Order removeOrder(String orderDate, Integer orderNumber);
 
