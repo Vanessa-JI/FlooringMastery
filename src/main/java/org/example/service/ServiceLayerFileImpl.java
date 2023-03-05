@@ -13,6 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 public class ServiceLayerFileImpl implements ServiceLayer {
 
@@ -33,11 +34,19 @@ public class ServiceLayerFileImpl implements ServiceLayer {
 
     @Override
     public Order getAnOrder(String orderDate, Integer orderNumber) {
+//        if (dao.getAnOrder(orderDate, orderNumber)
         return null;
     }
 
     @Override
-    public void addOrder(Order order) {
+    public void addOrder(Order order, HashMap<String, HashMap<Integer, Order>> allOrders) {
+
+        HashMap orderList = new HashMap<>();
+        if (allOrders.containsKey(order.getOrderDate())) {
+            orderList = allOrders.get(order.getOrderDate());
+        }
+        orderList.put(order.getOrderNumber(), order);
+        allOrders.put(order.getOrderDate(), orderList);
 
     }
 

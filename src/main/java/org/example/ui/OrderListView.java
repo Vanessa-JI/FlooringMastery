@@ -14,6 +14,9 @@ public class OrderListView {
 
     private UserIO io = new UserIOConsoleImpl();
 
+    public OrderListView(UserIO myIo) {
+    }
+
     public int printMenuAndGetSelection() {
 
         io.print("<<Flooring Program>>");

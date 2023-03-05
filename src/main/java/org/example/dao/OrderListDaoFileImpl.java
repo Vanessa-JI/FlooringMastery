@@ -38,7 +38,6 @@ public class OrderListDaoFileImpl implements OrderListDao {
         }
         orderList.put(order.getOrderNumber(), order);
         allOrders.put(order.getOrderDate(), orderList);
-        // NEED TO SAVE TO THE FILE AFTER AN ORDER IS ADDED
     }
 
     @Override

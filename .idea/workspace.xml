@@ -4,22 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Added input file and export all data functionality">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OrderListBadDateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OrderListInvalidAreaException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OrderListInvalidNameException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OrderListInvalidProductSelectionException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/OrderListInvalidStateException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayerFileImpl.java" afterDir="false" />
+    <list default="true" id="61cded9d-1811-4616-a3d1-ed260ec57cfc" name="Changes" comment="Written service layer code but not fully implemented">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/OrderListDaoFileImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/applicationContext.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/controller/OrderListController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/OrderListDaoFileImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dao/ProductListDaoException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/dto/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/dto/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/notes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayerFileImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/service/ServiceLayerFileImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ui/UserIOConsoleImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ui/UserIOConsoleImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +59,10 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -170,7 +170,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677935551577</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Written service layer code but not fully implemented">
+      <created>1677971118276</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1677971118276</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -187,29 +194,30 @@
     <MESSAGE value="Implemented functionality to only allow for valid state inputs" />
     <MESSAGE value="Added checks for all attributes when editing information" />
     <MESSAGE value="Added input file and export all data functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added input file and export all data functionality" />
+    <MESSAGE value="Written service layer code but not fully implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Written service layer code but not fully implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>82</line>
+          <line>85</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>69</line>
+          <line>72</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>65</line>
+          <line>68</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/ui/OrderListView.java</url>
-          <line>64</line>
+          <line>67</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
