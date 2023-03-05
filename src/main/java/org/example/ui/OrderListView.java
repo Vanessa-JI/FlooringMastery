@@ -43,17 +43,17 @@ public class OrderListView {
 
         io.print("\nAvailable products: ");
         io.print("  - Carpet");
-        io.print("      * Cost per square foot: ADD THIS IN LATER");
-        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("      * Cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("carpet")).collect(Collectors.toList()).get(0).getCostPerSquareFoot());
+        io.print("      * Labor cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("carpet")).collect(Collectors.toList()).get(0).getLaborCostPerSquareFoot());
         io.print("  - Laminate");
-        io.print("      * Cost per square foot: ADD THIS IN LATER");
-        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("      * Cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("laminate")).collect(Collectors.toList()).get(0).getCostPerSquareFoot());
+        io.print("      * Labor cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("laminate")).collect(Collectors.toList()).get(0).getLaborCostPerSquareFoot());
         io.print("  - Tile");
-        io.print("      * Cost per square foot: ADD THIS IN LATER");
-        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("      * Cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("tile")).collect(Collectors.toList()).get(0).getCostPerSquareFoot());
+        io.print("      * Labor cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("tile")).collect(Collectors.toList()).get(0).getLaborCostPerSquareFoot());
         io.print("  - Wood");
-        io.print("      * Cost per square foot: ADD THIS IN LATER");
-        io.print("      * Labor cost per square foot: ADD THIS IN LATER");
+        io.print("      * Cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("wood")).collect(Collectors.toList()).get(0).getCostPerSquareFoot());
+        io.print("      * Labor cost per square foot: £" + allProducts.stream().filter((p) -> p.getProductType().equalsIgnoreCase("wood")).collect(Collectors.toList()).get(0).getLaborCostPerSquareFoot());
 
         String productType = io.readString("\nFrom the available products shown, which product would you like to purchase?");
         productType = checkProductType(productType, allProducts, newOrder);
