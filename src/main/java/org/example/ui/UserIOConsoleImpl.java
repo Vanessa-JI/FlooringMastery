@@ -15,6 +15,9 @@ public class UserIOConsoleImpl implements UserIO {
      */
     final private Scanner console = new Scanner(System.in);
 
+//    public UserIOConsoleImpl(OrderListView view) {
+//    }
+
     /**
      * A very simple method that takes in a message to display on the console
      * and then waits for a integer answer from the user to return.

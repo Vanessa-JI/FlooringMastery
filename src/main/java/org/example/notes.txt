@@ -25,13 +25,13 @@ Saturday
 
 
 Sunday
-7. Edit the OrderListDao so it includes all methods mentioned in FileImpl
+(7. Edit the OrderListDao so it includes all methods mentioned in FileImpl)
 8. Add comments and documentation
 9. Find all methods with 'throws' and add a try-catch
-10. Fix @Override annotations appearing where they shouldn't be
+(10. Fix @Override annotations appearing where they shouldn't be)
 11. Flowchart
 12. Clean up display output for display orders
-13. Read remit
+(13. Read remit)
 7. Add lambdas and streams functionality
 
 
